@@ -11,7 +11,8 @@ class Experience extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'date',
+        'start_year',
+        'end_year',
         'position',
         'company',
         'description'

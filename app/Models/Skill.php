@@ -9,4 +9,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Skill extends Model
 {
     use HasFactory, SoftDeletes;
+
+    protected $fillable = [
+        'percentage',
+        'skill',
+        'description',
+    ];
+
 }

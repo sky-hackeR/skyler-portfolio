@@ -15,7 +15,13 @@ class CreateSiteInfosTable extends Migration
     {
         Schema::create('site_infos', function (Blueprint $table) {
             $table->id();
+            $table->string('site_name')->nullable(); 
+            $table->string('logo_bottom')->nullable(); 
+            $table->string('logo_top')->nullable(); 
+            $table->text('description')->nullable(); 
+            $table->string('favicon')->nullable(); 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
