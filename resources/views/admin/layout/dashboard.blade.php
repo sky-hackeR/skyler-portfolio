@@ -8,10 +8,10 @@
 <head>
         
         <meta charset="utf-8" />
-        <title>{{ !empty($pageGlobalData->setting) ? $pageGlobalData->setting->site_name : "Newspaper" }} - Admin  Dashboard</title>
+        <title>{{ !empty($pageGlobalData->setting) ? $pageGlobalData->setting->site_name : "sky" }} - Admin  Dashboard</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="{{ !empty($pageGlobalData->setting) ? $pageGlobalData->setting->description : "Solution to All" }}" name="description" />
-        <meta content="KoderiaNg(+2348162957065)" name="author" />
+        <meta content="skyhackeR(+2348082574927)" name="author" />
         <!-- App favicon -->
         <link rel="shortcut icon" href="{{ !empty($pageGlobalData->setting) ? $pageGlobalData->setting->favicon : null }}">
 
@@ -92,9 +92,6 @@
                             <div class="dropdown-menu dropdown-menu-end">
                                 <!-- item-->
                                 <a class="dropdown-item" href="#"><i class="bx bx-user font-size-16 align-middle me-1"></i> <span key="t-profile">Profile</span></a>
-                                <a class="dropdown-item" href="#"><i class="bx bx-wallet font-size-16 align-middle me-1"></i> <span key="t-my-wallet">My Wallet</span></a>
-                                <a class="dropdown-item d-block" href="#"><span class="badge bg-success float-end">11</span><i class="bx bx-wrench font-size-16 align-middle me-1"></i> <span key="t-settings">Settings</span></a>
-                                <a class="dropdown-item" href="#"><i class="bx bx-lock-open font-size-16 align-middle me-1"></i> <span key="t-lock-screen">Lock screen</span></a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item text-danger" href="{{ url('/admin/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="bx bx-power-off font-size-16 align-middle me-1 text-danger"></i> <span key="t-logout">Logout</span></a>
                                 <form id="logout-form" action="{{ url('/admin/logout') }}" method="POST" style="display: none;">@csrf</form>
@@ -143,35 +140,35 @@
                                 </a>
                                 <ul class="sub-menu" aria-expanded="false">
                                     <li><a href="{{ url('/admin/about') }}" key="t-saas">About</a></li>
-                                    <li><a href="{{ url('/admin/contact') }}" key="t-saas">Contact Information</a></li>
+                                    <li><a href="{{ url('/admin/contacts') }}" key="t-saas">Contact Information</a></li>
 
                                 </ul>
                             </li>
 
                             <li>
                                 <a href="{{ url('/admin/education') }}" class="waves-effect">
-                                    <i class="bx bx-hive"></i>
+                                    <i class="bx bxs-book-open"></i>
                                     <span key="t-category">Education</span>
                                 </a>
                             </li>
 
                             <li>
-                                <a href="{{ url('/admin/experience') }}" class="waves-effect">
-                                    <i class="bx bx-hive"></i>
+                                <a href="{{ url('/admin/experiences') }}" class="waves-effect">
+                                    <i class="bx bxs-briefcase"></i>
                                     <span key="t-category">Experience</span>
                                 </a>
                             </li>
 
                             <li>
-                                <a href="{{ url('/admin/project') }}" class="waves-effect">
-                                    <i class="bx bx-hive"></i>
+                                <a href="{{ url('/admin/projects') }}" class="waves-effect">
+                                    <i class="bx bx-folder-open"></i>
                                     <span key="t-category">Project</span>
                                 </a>
                             </li>
 
                             <li>
-                                <a href="{{ url('/admin/skill') }}" class="waves-effect">
-                                    <i class="bx bx-hive"></i>
+                                <a href="{{ url('/admin/skills') }}" class="waves-effect">
+                                    <i class="bx bx-certification"></i>
                                     <span key="t-category">Skill</span>
                                 </a>
                             </li>

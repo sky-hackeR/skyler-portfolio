@@ -3,24 +3,23 @@
 
     
 <head>
-        
-        <meta charset="utf-8" />
-        <title>sky-Portfolio - Admin Authentication</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta content="Solution to All"  name="description" />
-        <meta content="sky-hackeR(+2348082574927)" name="author" />
-        <!-- App favicon -->
-        <link rel="shortcut icon" href="">
+    <meta charset="utf-8" />
+    <title>{{ !empty($pageGlobalData->setting) ? $pageGlobalData->setting->site_name : "skY" }} - Admin Authentication</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="{{ !empty($pageGlobalData->setting) ? $pageGlobalData->setting->description : "Comprehensive Portfolio" }}" name="description" />
+    <meta content="sky-hackeR(+2348082574927)" name="author" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="{{ !empty($pageGlobalData->setting) ? $pageGlobalData->setting->favicon : null }}">
 
 
-        <!-- Bootstrap Css -->
-        <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
-        <!-- Icons Css -->
-        <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
-        <!-- App Css-->
-        <link href="{{ asset('assets/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
+    <!-- Bootstrap Css -->
+    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+    <!-- Icons Css -->
+    <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
+    <!-- App Css-->
+    <link href="{{ asset('assets/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
 
-    </head>
+</head>
 
     <body>
         <div class="account-pages my-5 pt-sm-5">
@@ -33,7 +32,7 @@
                         </div>
                         <div class="mt-5 text-center">
                             <div>
-                                <p>© <script>document.write(new Date().getFullYear())</script> KoderiaNg.</p>
+                                <p>© <script>document.write(new Date().getFullYear())</script> skyhackeR.</p>
                             </div>
                         </div>
                     </div>

@@ -34,6 +34,25 @@ Route::group(['prefix' => 'admin'], function () {
   Route::get('/password/reset', [App\Http\Controllers\Admin\Auth\ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.reset');
   Route::get('/password/reset/{token}', [App\Http\Controllers\Admin\Auth\ResetPasswordController::class, 'showResetForm']);
 
+  Route::post('/updateSiteInfo', [App\Http\Controllers\Admin\AdminController::class, 'updateSiteInfo'])->name('updateSiteInfo')->middleware(['auth:admin']);
+
+
   Route::get('/home', [App\Http\Controllers\Admin\AdminController::class, 'index'])->name('home')->middleware(['auth:admin']);
+  Route::get('/siteSettings', [App\Http\Controllers\Admin\AdminController::class, 'siteSettings'])->name('siteSettings')->middleware(['auth:admin']);
+
+  Route::get('/socials', [App\Http\Controllers\Admin\AdminController::class, 'socials'])->name('socials')->middleware(['auth:admin']);
+  Route::post('/addSocial', [App\Http\Controllers\Admin\AdminController::class, 'addSocial'])->name('addSocial')->middleware(['auth:admin']);
+  Route::post('/editSocial', [App\Http\Controllers\Admin\AdminController::class, 'editSocial'])->name('editSocial')->middleware(['auth:admin']);
+  Route::post('/deleteSocial', [App\Http\Controllers\Admin\AdminController::class, 'deleteSocial'])->name('deleteSocial')->middleware(['auth:admin']);
+
+  Route::get('/skills', [App\Http\Controllers\Admin\AdminController::class, 'skills'])->name('skills')->middleware(['auth:admin']);
+  Route::get('/projects', [App\Http\Controllers\Admin\AdminController::class, 'projects'])->name('projects')->middleware(['auth:admin']);
+  Route::get('/contacts', [App\Http\Controllers\Admin\AdminController::class, 'contacts'])->name('contacts')->middleware(['auth:admin']);
+  Route::get('/education', [App\Http\Controllers\Admin\AdminController::class, 'education'])->name('education')->middleware(['auth:admin']);
+  Route::get('/experiences', [App\Http\Controllers\Admin\AdminController::class, 'experiences'])->name('experiences')->middleware(['auth:admin']);
+  Route::get('/about', [App\Http\Controllers\Admin\AdminController::class, 'about'])->name('about')->middleware(['auth:admin']);
+
+
+
 
 });

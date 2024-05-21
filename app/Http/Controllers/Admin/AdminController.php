@@ -55,6 +55,49 @@ class AdminController extends Controller
         ]);
     }
 
+    public function skills(){
+        $skills = Skill::get();
+        return view('admin.skills', [
+            'skills' => $skills
+        ]);
+    }
+
+    public function projects(){
+        $projects = Project::get();
+        return view('admin.projects', [
+            'projects' => $projects
+        ]);
+    }
+
+    public function contacts(){
+        $contacts = ContactInfo::get();
+        return view('admin.contacts', [
+            'contacts' => $contacts
+        ]);
+    }
+
+    public function experiences(){
+        $experiences = Experience::get();
+        return view('admin.experiences', [
+            'experiences' => $experiences
+        ]);
+    }
+
+    public function about(){
+        $about = About::get();
+        return view('admin.about', [
+            'about' => $about
+        ]);
+    }
+
+    public function education(){
+        $education = Education::get();
+        return view('admin.education', [
+            'education' => $education
+        ]);
+    }
+
+
     public function updateSiteInfo(Request $request){
         $validator = Validator::make($request->all(), [
             'logo_bottom' => 'nullable|image',
@@ -84,7 +127,7 @@ class AdminController extends Controller
         }
         
         if(!empty($request->logo_bottom)){
-            $logobottom  = cloudinary()->uploadFile($request->file('logo_bottom')->getRealPath())->getSecurePath();
+            $logoBottom  = cloudinary()->uploadFile($request->file('logo_bottom')->getRealPath())->getSecurePath();
 
             $siteInfo->logo_bottom = $logoBottom;
         }
