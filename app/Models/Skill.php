@@ -13,7 +13,7 @@ class Skill extends Model
     protected $fillable = [
         'percentage',
         'skill',
-        'description',
+        'proficiency',
     ];
 
 }

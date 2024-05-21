@@ -17,7 +17,7 @@ class CreateSkillsTable extends Migration
             $table->id();
             $table->integer('percentage')->nullable(); 
             $table->string('skill')->nullable(); 
-            $table->text('description')->nullable();
+            $table->string('proficiency')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

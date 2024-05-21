@@ -20,6 +20,7 @@ class CreateSiteInfosTable extends Migration
             $table->string('logo_top')->nullable(); 
             $table->text('description')->nullable(); 
             $table->string('favicon')->nullable(); 
+            $table->string('image')->nullable(); 
             $table->timestamps();
             $table->softDeletes();
         });

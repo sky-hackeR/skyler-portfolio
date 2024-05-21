@@ -43,7 +43,7 @@
                     </div>
                    
                     <div>
-                        <button type="submit" class="btn btn-primary w-md">Save</button>
+                        <button type="submit" class="btn btn-primary w-md float-end">Save</button>
                     </div>
                 </form>
             </div>

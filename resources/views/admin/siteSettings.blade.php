@@ -71,6 +71,13 @@
                             <input type="file" class="form-control" id="floatingFaviconInput" name="favicon">
                         </div>
                     </fieldset>
+
+                    <fieldset class="mb-3">
+                        <p>General Image</p>
+                        <div class="form-floating mb-3">
+                            <input type="file" class="form-control" id="floatingImageInput" name="image">
+                        </div>
+                    </fieldset>
                     
                    
                     <div>
@@ -122,6 +129,17 @@
                                 <td>
                                     <div class="text-end">
                                         <img src="{{ !empty($setting) ? $setting->logo_top : null }}" alt="" class="avatar-xl">
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <h5 class="text-truncate font-size-14 m-0"><a href="javascript: void(0);" class="text-dark">General Site Image</a></h5>
+                                </td>
+                                <td>
+                                    <div class="text-end">
+                                        <img src="{{ !empty($setting) ? $setting->image : null }}" alt="" class="avatar-xl">
                                     </div>
                                 </td>
                             </tr>

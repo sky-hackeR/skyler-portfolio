@@ -24,7 +24,7 @@ class GlobalDataMiddleware
 
         // Add your data to the request object.
         $setting = Setting::first();
-        $socials = social::all();
+        $socials = Social::all();
 
         $data = new \stdClass();
         $data->setting = $setting;

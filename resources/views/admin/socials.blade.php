@@ -48,7 +48,7 @@
                                 <option value="fa-whatsapp">Whatsapp Icon</option>
                                 <option value="fa-linkedin">Linkedin Icon</option>
                                 <option value="fa-envelope">Email Icon</option>
-                                <option value="fa-envelope">Github Icon</option>
+                                <option value="fa-github">Github Icon</option>
                             </select>
                             <label for="icon">Select Social Media Icon</label>
                         </div>

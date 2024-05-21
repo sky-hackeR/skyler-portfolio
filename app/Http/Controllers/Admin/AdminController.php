@@ -32,7 +32,7 @@ class AdminController extends Controller
 
     public function index(){
         $setting = Setting::first();
-        if(empty($setting->favicon) || empty($setting->site_name) || empty($setting->logo_bottom) || empty($setting->logo_top)){
+        if(empty($setting->favicon) || empty($setting->site_name) || empty($setting->logo_bottom) || empty($setting->logo_top) || empty($setting->image)){
             return view('admin.siteSettings', [
                 'setting' => $setting
             ]);
@@ -77,9 +77,9 @@ class AdminController extends Controller
     }
 
     public function experiences(){
-        $experiences = Experience::get();
+        $experience = Experience::get();
         return view('admin.experiences', [
-            'experiences' => $experiences
+            'experience' => $experience
         ]);
     }
 
@@ -133,6 +133,7 @@ class AdminController extends Controller
             'logo_bottom' => 'nullable|image',
             'logo_top' => 'nullable|image',
             'favicon' => 'nullable|image',
+            'image' => 'nullable|image',
         ]);
 
         if($validator->fails()) {
@@ -172,6 +173,12 @@ class AdminController extends Controller
             $favicon  = cloudinary()->uploadFile($request->file('favicon')->getRealPath())->getSecurePath();
 
             $siteInfo->favicon = $favicon;
+        }
+
+        if(!empty($request->image)){
+            $image  = cloudinary()->uploadFile($request->file('image')->getRealPath())->getSecurePath();
+
+            $siteInfo->image = $image;
         }
 
         if($siteInfo->save()){
@@ -350,6 +357,93 @@ class AdminController extends Controller
 
         if($contact->save()){
             alert()->success('Changes Saved', 'Contact information changes saved successfully')->persistent('Close');
+            return redirect()->back();
+        }
+
+        alert()->error('Oops!', 'Something went wrong')->persistent('Close');
+        return redirect()->back();
+    }
+
+    public function addSkill(Request $request){
+        $validator = Validator::make($request->all(), [
+            'percentage' => 'required',
+            'skill' => 'required',
+            'proficiency' => 'required',
+        ]);
+
+        if($validator->fails()) {
+            alert()->error('Error', $validator->messages()->all()[0])->persistent('Close');
+            return redirect()->back();
+        }
+
+        $newSkill = ([
+            'percentage' => $request->percentage,
+            'skill' => $request->skill,
+            'proficiency' => $request->proficiency,
+        ]);
+
+        if(Skill::create($newSkill)){
+            alert()->success('Changes Saved', 'Skill added successfully')->persistent('Close');
+            return redirect()->back();
+        }
+
+        alert()->error('Oops!', 'Something went wrong')->persistent('Close');
+        return redirect()->back();
+    }
+
+    public function deleteSkill(Request $request){
+        $validator = Validator::make($request->all(), [
+            'skill_id' => 'required',
+        ]);
+
+        if($validator->fails()) {
+            alert()->error('Error', $validator->messages()->all()[0])->persistent('Close');
+            return redirect()->back();
+        }
+
+        if(!$skill = Skill::find($request->skill_id)){
+            alert()->error('Oops', 'Invalid Skill Information')->persistent('Close');
+            return redirect()->back();
+        }
+
+        if($skill->delete()){
+            alert()->success('Changes Saved', 'Skill deleted successfully')->persistent('Close');
+            return redirect()->back();
+        }
+
+        alert()->error('Oops!', 'Something went wrong')->persistent('Close');
+        return redirect()->back();
+    }
+
+    public function editSkill(Request $request){
+        $validator = Validator::make($request->all(), [
+            'skill_id' => 'required',
+        ]);
+
+        if($validator->fails()) {
+            alert()->error('Error', $validator->messages()->all()[0])->persistent('Close');
+            return redirect()->back();
+        }
+
+        if(!$skill = Skill::find($request->skill_id)){
+            alert()->error('Oops', 'Invalid Skill')->persistent('Close');
+            return redirect()->back();
+        }
+
+        if(!empty($request->percentage) && $request->percentage != $skill->percentage){
+            $skill->percentage = $request->percentage;
+        }
+
+        if(!empty($request->skill) && $request->skill != $skill->skill){
+            $skill->skill = $request->skill;
+        }
+
+        if(!empty($request->proficiency) && $request->proficiency!= $skill->proficiency){
+            $skill->proficiency = $request->proficiency;
+        }
+
+        if($skill->save()){
+            alert()->success('Changes Saved', 'Skill changes saved successfully')->persistent('Close');
             return redirect()->back();
         }
 
