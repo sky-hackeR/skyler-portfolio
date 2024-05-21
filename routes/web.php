@@ -59,7 +59,14 @@ Route::group(['prefix' => 'admin'], function () {
   Route::post('/deleteContactInfo', [App\Http\Controllers\Admin\AdminController::class, 'deleteContactInfo'])->name('deleteContactInfo')->middleware(['auth:admin']);
 
   Route::get('/education', [App\Http\Controllers\Admin\AdminController::class, 'education'])->name('education')->middleware(['auth:admin']);
+  Route::post('/addEducation', [App\Http\Controllers\Admin\AdminController::class, 'addEducation'])->name('addEducation')->middleware(['auth:admin']);
+  Route::post('/editEducation', [App\Http\Controllers\Admin\AdminController::class, 'editEducation'])->name('editEducation')->middleware(['auth:admin']);
+  Route::post('/deleteEducation', [App\Http\Controllers\Admin\AdminController::class, 'deleteEducation'])->name('deleteEducation')->middleware(['auth:admin']);
+
   Route::get('/experiences', [App\Http\Controllers\Admin\AdminController::class, 'experiences'])->name('experiences')->middleware(['auth:admin']);
+  Route::post('/addExperience', [App\Http\Controllers\Admin\AdminController::class, 'addExperience'])->name('addExperience')->middleware(['auth:admin']);
+  Route::post('/editExperience', [App\Http\Controllers\Admin\AdminController::class, 'editExperience'])->name('editExperience')->middleware(['auth:admin']);
+  Route::post('/deleteExperience', [App\Http\Controllers\Admin\AdminController::class, 'deleteExperience'])->name('deleteExperience')->middleware(['auth:admin']);
 
   Route::get('/about', [App\Http\Controllers\Admin\AdminController::class, 'about'])->name('about')->middleware(['auth:admin']);
   Route::post('/updateAbout', [App\Http\Controllers\Admin\AdminController::class, 'updateAbout'])->name('updateAbout')->middleware(['auth:admin']);

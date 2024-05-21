@@ -148,6 +148,11 @@ class AdminController extends Controller
         }
 
         if(!empty($request->site_name)){
+            $username = $request->username;
+            $siteInfo->username = $username;
+        }
+
+        if(!empty($request->site_name)){
             $sitename = $request->site_name;
             $siteInfo->site_name = $sitename;
         }
@@ -444,6 +449,204 @@ class AdminController extends Controller
 
         if($skill->save()){
             alert()->success('Changes Saved', 'Skill changes saved successfully')->persistent('Close');
+            return redirect()->back();
+        }
+
+        alert()->error('Oops!', 'Something went wrong')->persistent('Close');
+        return redirect()->back();
+    }
+
+    public function addEducation(Request $request){
+        $validator = Validator::make($request->all(), [
+            'start_year' => 'required',
+            'end_year' => 'required',
+            'degree' => 'required',
+            'school' => 'required',
+            'description' => 'required',
+        ]);
+
+        if($validator->fails()) {
+            alert()->error('Error', $validator->messages()->all()[0])->persistent('Close');
+            return redirect()->back();
+        }
+
+        $newEducation = ([
+            'start_year' => $request->start_year,
+            'end_year' => $request->end_year,
+            'degree' => $request->degree,
+            'school' => $request->school,
+            'description' => $request->description,
+        ]);
+
+        if(Education::create($newEducation)){
+            alert()->success('Changes Saved', 'Education added successfully')->persistent('Close');
+            return redirect()->back();
+        }
+
+        alert()->error('Oops!', 'Something went wrong')->persistent('Close');
+        return redirect()->back();
+    }
+
+    public function deleteEducation(Request $request){
+        $validator = Validator::make($request->all(), [
+            'edu_id' => 'required',
+        ]);
+
+        if($validator->fails()) {
+            alert()->error('Error', $validator->messages()->all()[0])->persistent('Close');
+            return redirect()->back();
+        }
+
+        if(!$edu = Education::find($request->edu_id)){
+            alert()->error('Oops', 'Invalid Education Information')->persistent('Close');
+            return redirect()->back();
+        }
+
+        if($edu->delete()){
+            alert()->success('Changes Saved', 'Education record deleted successfully')->persistent('Close');
+            return redirect()->back();
+        }
+
+        alert()->error('Oops!', 'Something went wrong')->persistent('Close');
+        return redirect()->back();
+    }
+
+    public function editEducation(Request $request){
+        $validator = Validator::make($request->all(), [
+            'edu_id' => 'required',
+        ]);
+
+        if($validator->fails()) {
+            alert()->error('Error', $validator->messages()->all()[0])->persistent('Close');
+            return redirect()->back();
+        }
+
+        if(!$edu = Education::find($request->edu_id)){
+            alert()->error('Oops', 'Invalid Education')->persistent('Close');
+            return redirect()->back();
+        }
+
+        if(!empty($request->start_year) && $request->start_year != $edu->start_year){
+            $edu->start_year = $request->start_year;
+        }
+
+        if(!empty($request->end_year) && $request->end_year != $edu->end_year){
+            $edu->end_year = $request->end_year;
+        }
+
+        if(!empty($request->degree) && $request->degree!= $edu->degree){
+            $edu->degree = $request->degree;
+        }
+
+        if(!empty($request->school) && $request->school!= $edu->school){
+            $edu->school = $request->school;
+        }
+
+        if(!empty($request->description) && $request->description!= $edu->description){
+            $edu->description = $request->description;
+        }
+
+        if($edu->save()){
+            alert()->success('Changes Saved', 'Education changes saved successfully')->persistent('Close');
+            return redirect()->back();
+        }
+
+        alert()->error('Oops!', 'Something went wrong')->persistent('Close');
+        return redirect()->back();
+    }
+
+    public function addExperience(Request $request){
+        $validator = Validator::make($request->all(), [
+            'start_year' => 'required',
+            'end_year' => 'required',
+            'position' => 'required',
+            'company' => 'required',
+            'description' => 'required',
+        ]);
+
+        if($validator->fails()) {
+            alert()->error('Error', $validator->messages()->all()[0])->persistent('Close');
+            return redirect()->back();
+        }
+
+        $newExperience = ([
+            'start_year' => $request->start_year,
+            'end_year' => $request->end_year,
+            'position' => $request->position,
+            'company' => $request->company,
+            'description' => $request->description,
+        ]);
+
+        if(Experience::create($newExperience)){
+            alert()->success('Changes Saved', 'Experience added successfully')->persistent('Close');
+            return redirect()->back();
+        }
+
+        alert()->error('Oops!', 'Something went wrong')->persistent('Close');
+        return redirect()->back();
+    }
+
+    public function deleteExperience(Request $request){
+        $validator = Validator::make($request->all(), [
+            'exp_id' => 'required',
+        ]);
+
+        if($validator->fails()) {
+            alert()->error('Error', $validator->messages()->all()[0])->persistent('Close');
+            return redirect()->back();
+        }
+
+        if(!$exp = Experience::find($request->exp_id)){
+            alert()->error('Oops', 'Invalid Experience Information')->persistent('Close');
+            return redirect()->back();
+        }
+
+        if($exp->delete()){
+            alert()->success('Changes Saved', 'Experience record deleted successfully')->persistent('Close');
+            return redirect()->back();
+        }
+
+        alert()->error('Oops!', 'Something went wrong')->persistent('Close');
+        return redirect()->back();
+    }
+
+    public function editExperience(Request $request){
+        $validator = Validator::make($request->all(), [
+            'exp_id' => 'required',
+        ]);
+
+        if($validator->fails()) {
+            alert()->error('Error', $validator->messages()->all()[0])->persistent('Close');
+            return redirect()->back();
+        }
+
+        if(!$exp = Experience::find($request->exp_id)){
+            alert()->error('Oops', 'Invalid Experience')->persistent('Close');
+            return redirect()->back();
+        }
+
+        if(!empty($request->start_year) && $request->start_year != $exp->start_year){
+            $exp->start_year = $request->start_year;
+        }
+
+        if(!empty($request->end_year) && $request->end_year != $exp->end_year){
+            $exp->end_year = $request->end_year;
+        }
+
+        if(!empty($request->position) && $request->position!= $exp->position){
+            $exp->position = $request->position;
+        }
+
+        if(!empty($request->company) && $request->company!= $exp->company){
+            $exp->company = $request->company;
+        }
+
+        if(!empty($request->description) && $request->description!= $exp->description){
+            $exp->description = $request->description;
+        }
+
+        if($exp->save()){
+            alert()->success('Changes Saved', 'Experience changes saved successfully')->persistent('Close');
             return redirect()->back();
         }
 

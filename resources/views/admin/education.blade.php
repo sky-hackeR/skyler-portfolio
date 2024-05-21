@@ -121,9 +121,9 @@
                                         
                                             <form action="{{ url('/admin/deleteEducation') }}" method="POST">
                                                 @csrf
+                                                <input type="hidden" name="edu_id" value="{{ $edu->id }}">
                                                 <div class="modal-body">
                                                     <p class="text-center"> Are you sure you want to delete this education entry?</p>
-                                                    <input type="hidden" name="education_id" value="{{ $edu->id }}">
                                                 </div>
                                                 
                                                 <div class="modal-footer">
@@ -147,7 +147,7 @@
 
                                             <form action="{{ url("/admin/editEducation") }}" method="post">
                                                 @csrf
-                                                <input type="hidden" name="education_id" value="{{ $edu->id }}">
+                                                <input type="hidden" name="edu_id" value="{{ $edu->id }}">
 
                                                 <div class="modal-body">
                                                     <div class="form-floating mb-3">

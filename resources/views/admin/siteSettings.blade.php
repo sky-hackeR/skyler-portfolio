@@ -27,6 +27,12 @@
                 <form action="{{ url('/admin/updateSiteInfo') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="site_info_id" value="{{ !empty($setting) ? $setting->id : null }}">
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingnameInput" placeholder="Enter User Name" name="username">
+                        <label for="floatingnameInput">User Name</label>
+                    </div>
+
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="floatingnameInput" placeholder="Enter Site Name" name="site_name">
                         <label for="floatingnameInput">Site Name</label>
@@ -98,6 +104,19 @@
                 <div class="table-responsive">
                     <table class="table table-nowrap align-middle mb-0">
                         <tbody>
+
+                            <tr> 
+                                <td>
+                                    <h5 class="text-truncate font-size-14 m-0"><a href="javascript: void(0);" class="text-dark">User Name</a></h5>
+                                </td>
+                                
+                                <td>
+                                    <div class="text-end">
+                                        <span class="font-size-11">{{ !empty($setting) ? $setting->username : "sky-hackeR." }}</span>
+                                    </div>
+                                </td>
+                            </tr>
+
                             <tr> 
                                 <td>
                                     <h5 class="text-truncate font-size-14 m-0"><a href="javascript: void(0);" class="text-dark">Site Name</a></h5>

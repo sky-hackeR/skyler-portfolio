@@ -86,10 +86,10 @@
                 <table id="datatable" class="table table-bordered dt-responsive nowrap w-100">
                     <thead>
                         <tr>
+                            <th>Company</th>
+                            <th>Position</th>
                             <th>Start Year</th>
                             <th>End Year</th>
-                            <th>Position</th>
-                            <th>Company</th>
                             <th>Description</th>
                             <th>Action</th>
                         </tr>
@@ -98,10 +98,10 @@
                     <tbody>
                         @foreach($experience as $exp)
                         <tr>
+                            <td>{{ $exp->company }}</td>
+                            <td>{{ $exp->position }}</td>
                             <td>{{ $exp->start_year }}</td>
                             <td>{{ $exp->end_year }}</td>
-                            <td>{{ $exp->position }}</td>
-                            <td>{{ $exp->company }}</td>
                             <td>{{ $exp->description }}</td>
                             <td>
                                 <div class="text-end">
@@ -121,9 +121,9 @@
                                         
                                             <form action="{{ url('/admin/deleteExperience') }}" method="POST">
                                                 @csrf
+                                                <input type="hidden" name="exp_id" value="{{ $exp->id }}">
                                                 <div class="modal-body">
                                                     <p class="text-center"> Are you sure you want to delete this experience entry?</p>
-                                                    <input type="hidden" name="experience_id" value="{{ $exp->id }}">
                                                 </div>
                                                 
                                                 <div class="modal-footer">
@@ -145,9 +145,9 @@
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
 
-                                            <form action="{{ url("/admin/editExperience") }}" method="post">
+                                            <form action="{{ url("/admin/editExperience") }}" method="POST">
                                                 @csrf
-                                                <input type="hidden" name="experience_id" value="{{ $exp->id }}">
+                                                <input type="hidden" name="exp_id" value="{{ $exp->id }}">
 
                                                 <div class="modal-body">
                                                     <div class="form-floating mb-3">

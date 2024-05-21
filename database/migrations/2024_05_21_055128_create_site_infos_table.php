@@ -21,6 +21,7 @@ class CreateSiteInfosTable extends Migration
             $table->text('description')->nullable(); 
             $table->string('favicon')->nullable(); 
             $table->string('image')->nullable(); 
+            $table->string('username')->nullable(); 
             $table->timestamps();
             $table->softDeletes();
         });
