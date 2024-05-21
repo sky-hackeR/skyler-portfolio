@@ -47,10 +47,18 @@ Route::group(['prefix' => 'admin'], function () {
 
   Route::get('/skills', [App\Http\Controllers\Admin\AdminController::class, 'skills'])->name('skills')->middleware(['auth:admin']);
   Route::get('/projects', [App\Http\Controllers\Admin\AdminController::class, 'projects'])->name('projects')->middleware(['auth:admin']);
+
+
   Route::get('/contacts', [App\Http\Controllers\Admin\AdminController::class, 'contacts'])->name('contacts')->middleware(['auth:admin']);
+  Route::post('/addContactInfo', [App\Http\Controllers\Admin\AdminController::class, 'addContactInfo'])->name('addContactInfo')->middleware(['auth:admin']);
+  Route::post('/editContactInfo', [App\Http\Controllers\Admin\AdminController::class, 'editContactInfo'])->name('editContactInfo')->middleware(['auth:admin']);
+  Route::post('/deleteContactInfo', [App\Http\Controllers\Admin\AdminController::class, 'deleteContactInfo'])->name('deleteContactInfo')->middleware(['auth:admin']);
+
   Route::get('/education', [App\Http\Controllers\Admin\AdminController::class, 'education'])->name('education')->middleware(['auth:admin']);
   Route::get('/experiences', [App\Http\Controllers\Admin\AdminController::class, 'experiences'])->name('experiences')->middleware(['auth:admin']);
+
   Route::get('/about', [App\Http\Controllers\Admin\AdminController::class, 'about'])->name('about')->middleware(['auth:admin']);
+  Route::post('/updateAbout', [App\Http\Controllers\Admin\AdminController::class, 'updateAbout'])->name('updateAbout')->middleware(['auth:admin']);
 
 
 

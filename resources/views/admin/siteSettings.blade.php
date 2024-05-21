@@ -117,7 +117,7 @@
 
                             <tr>
                                 <td>
-                                    <h5 class="text-truncate font-size-14 m-0"><a href="javascript: void(0);" class="text-dark">Site Logo White</a></h5>
+                                    <h5 class="text-truncate font-size-14 m-0"><a href="javascript: void(0);" class="text-dark">Site Logo Top</a></h5>
                                 </td>
                                 <td>
                                     <div class="text-end">
@@ -128,7 +128,7 @@
 
                             <tr>
                                 <td>
-                                    <h5 class="text-truncate font-size-14 m-0"><a href="javascript: void(0);" class="text-dark">Site Logo Dark</a></h5>
+                                    <h5 class="text-truncate font-size-14 m-0"><a href="javascript: void(0);" class="text-dark">Site Logo Bottom</a></h5>
                                 </td>
                                 <td>
                                     <div class="text-end">

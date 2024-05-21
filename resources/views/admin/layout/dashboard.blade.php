@@ -49,19 +49,19 @@
                         <div class="navbar-brand-box">
                             <a href="{{ url('/admin/home') }}" class="logo logo-dark">
                                 <span class="logo-sm">
-                                    <img src="{{ !empty($pageGlobalData->setting) ? $pageGlobalData->setting->logo_dark: null }}" alt="" height="40">
+                                    <img src="{{ !empty($pageGlobalData->setting) ? $pageGlobalData->setting->logo_bottom: null }}" alt="" height="40">
                                 </span>
                                 <span class="logo-lg">
-                                    <img src="{{ !empty($pageGlobalData->setting) ? $pageGlobalData->setting->logo_dark: null }}" alt="" height="40">
+                                    <img src="{{ !empty($pageGlobalData->setting) ? $pageGlobalData->setting->logo_bottom: null }}" alt="" height="40">
                                 </span>
                             </a>
 
                             <a href="{{ url('/admin/home') }}" class="logo logo-light">
                                 <span class="logo-sm">
-                                    <img src="{{ !empty($pageGlobalData->setting) ? $pageGlobalData->setting->logo_light: null }}" alt="" height="40">
+                                    <img src="{{ !empty($pageGlobalData->setting) ? $pageGlobalData->setting->logo_top: null }}" alt="" height="40">
                                 </span>
                                 <span class="logo-lg">
-                                    <img src="{{ !empty($pageGlobalData->setting) ? $pageGlobalData->setting->logo_light: null }}" alt="" height="40">
+                                    <img src="{{ !empty($pageGlobalData->setting) ? $pageGlobalData->setting->logo_top: null }}" alt="" height="40">
                                 </span>
                             </a>
                         </div>

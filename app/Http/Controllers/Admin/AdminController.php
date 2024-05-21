@@ -84,7 +84,7 @@ class AdminController extends Controller
     }
 
     public function about(){
-        $about = About::get();
+        $about = About::first();
         return view('admin.about', [
             'about' => $about
         ]);
@@ -97,6 +97,36 @@ class AdminController extends Controller
         ]);
     }
 
+    public function updateAbout(Request $request){
+        $validator = Validator::make($request->all(), [
+            'about' => 'required',
+            'title' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            alert()->error('Error', $validator->messages()->first())->persistent('Close');
+            return redirect()->back();
+        }
+
+        // Find the existing about record or create a new one
+        $about = About::first();
+
+        if (!$about) {
+            $about = new About();
+        }
+
+        // Update the about statement
+        $about->about = $request->about;
+        $about->title = $request->title;
+
+        if ($about->save()) {
+            alert()->success('Changes Saved', 'About Us updated successfully')->persistent('Close');
+            return redirect()->back();
+        }
+
+        alert()->error('Oops!', 'Something went wrong')->persistent('Close');
+        return redirect()->back();
+    }
 
     public function updateSiteInfo(Request $request){
         $validator = Validator::make($request->all(), [
@@ -239,4 +269,93 @@ class AdminController extends Controller
         alert()->error('Oops!', 'Something went wrong')->persistent('Close');
         return redirect()->back();
     }
+
+    public function addContactInfo(Request $request){
+        $validator = Validator::make($request->all(), [
+            'email' => 'required',
+            'phone_number' => 'required',
+            'address' => 'required',
+        ]);
+
+        if($validator->fails()) {
+            alert()->error('Error', $validator->messages()->all()[0])->persistent('Close');
+            return redirect()->back();
+        }
+
+        $newContactInfo = ([
+            'email' => $request->email,
+            'phone_number' => $request->phone_number,
+            'address' => $request->address,
+        ]);
+
+        if(ContactInfo::create($newContactInfo)){
+            alert()->success('Changes Saved', 'Contact information added successfully')->persistent('Close');
+            return redirect()->back();
+        }
+
+        alert()->error('Oops!', 'Something went wrong')->persistent('Close');
+        return redirect()->back();
+    }
+
+    public function deleteContactInfo(Request $request){
+        $validator = Validator::make($request->all(), [
+            'contact_id' => 'required',
+        ]);
+
+        if($validator->fails()) {
+            alert()->error('Error', $validator->messages()->all()[0])->persistent('Close');
+            return redirect()->back();
+        }
+
+        if(!$contact = ContactInfo::find($request->contact_id)){
+            alert()->error('Oops', 'Invalid Contact Information')->persistent('Close');
+            return redirect()->back();
+        }
+
+        if($contact->delete()){
+            alert()->success('Changes Saved', 'Contact information deleted successfully')->persistent('Close');
+            return redirect()->back();
+        }
+
+        alert()->error('Oops!', 'Something went wrong')->persistent('Close');
+        return redirect()->back();
+    }
+
+    public function editContactInfo(Request $request){
+        $validator = Validator::make($request->all(), [
+            'contact_id' => 'required',
+        ]);
+
+        if($validator->fails()) {
+            alert()->error('Error', $validator->messages()->all()[0])->persistent('Close');
+            return redirect()->back();
+        }
+
+        if(!$contact = ContactInfo::find($request->contact_id)){
+            alert()->error('Oops', 'Invalid Social Link')->persistent('Close');
+            return redirect()->back();
+        }
+
+        if(!empty($request->email) && $request->email != $contact->email){
+            $contact->email = $request->email;
+        }
+
+        if(!empty($request->phone_number) && $request->phone_number != $contact->phone_number){
+            $contact->phone_number = $request->phone_number;
+        }
+
+        if(!empty($request->address) && $request->address!= $contact->address){
+            $contact->address = $request->address;
+        }
+
+        if($contact->save()){
+            alert()->success('Changes Saved', 'Contact information changes saved successfully')->persistent('Close');
+            return redirect()->back();
+        }
+
+        alert()->error('Oops!', 'Something went wrong')->persistent('Close');
+        return redirect()->back();
+    }
+
+
 }
