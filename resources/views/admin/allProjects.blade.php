@@ -85,9 +85,10 @@
                                 <div class="modal-dialog modal-md modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                     
-                                        <form action="{{ url('/admin/projects/'.$project->id) }}" method="POST">
+                                        <form action="{{ url('/admin/deleteProject') }}" method="POST">
                                             @csrf
-                                            @method('DELETE')
+
+                                            <input type="hidden" name="project_id" value="{{ $project->id }}">
                                             <div class="modal-body">
                                                 <p class="text-center"> Are you sure you want to delete "{{ $project->title }}"?</p>
                                             </div>
