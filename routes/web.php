@@ -87,7 +87,4 @@ Route::group(['prefix' => 'admin'], function () {
   Route::post('/editCertificate', [App\Http\Controllers\Admin\AdminController::class, 'editCertificate'])->name('editCertificate')->middleware(['auth:admin']);
   Route::post('/deleteCertificate', [App\Http\Controllers\Admin\AdminController::class, 'deleteCertificate'])->name('deleteCertificate')->middleware(['auth:admin']);
 
-
-
-
 });

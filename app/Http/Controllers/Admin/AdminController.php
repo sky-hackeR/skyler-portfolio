@@ -19,6 +19,7 @@ use App\Models\ContactInfo;
 use App\Models\Experience;
 use App\Models\Education;
 use App\Models\Project;
+use App\Models\ProjectImage;
 use App\Models\Skill;
 use App\Models\Counter;
 use App\Models\Certificate;
