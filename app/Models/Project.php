@@ -11,9 +11,19 @@ class Project extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
+        'title',
+        'client',
+        'year',
+        'services',
+        'project_type',
+        'description',
         'image',
-        'slug',
-        'type',
-        'name'
+        'about_project',
+        'about_client',
     ];
+
+    public function images(){
+
+        return $this->hasMany(ProjectImage::class);
+    }
 }

@@ -49,7 +49,7 @@
                         <div class="navbar-brand-box">
                             <a href="{{ url('/admin/home') }}" class="logo logo-dark">
                                 <span class="logo-sm">
-                                    <img src="{{ !empty($pageGlobalData->setting) ? $pageGlobalData->setting->logo_bottom: null }}" alt="" height="40">
+                                    <img src="{{ !empty($pageGlobalData->setting) ? $pageGlobalData->setting->favicon: null }}" alt="" height="40">
                                 </span>
                                 <span class="logo-lg">
                                     <img src="{{ !empty($pageGlobalData->setting) ? $pageGlobalData->setting->logo_bottom: null }}" alt="" height="40">
@@ -58,7 +58,7 @@
 
                             <a href="{{ url('/admin/home') }}" class="logo logo-light">
                                 <span class="logo-sm">
-                                    <img src="{{ !empty($pageGlobalData->setting) ? $pageGlobalData->setting->logo_top: null }}" alt="" height="40">
+                                    <img src="{{ !empty($pageGlobalData->setting) ? $pageGlobalData->setting->favicon: null }}" alt="" height="40">
                                 </span>
                                 <span class="logo-lg">
                                     <img src="{{ !empty($pageGlobalData->setting) ? $pageGlobalData->setting->logo_top: null }}" alt="" height="40">
@@ -141,6 +141,9 @@
                                 <ul class="sub-menu" aria-expanded="false">
                                     <li><a href="{{ url('/admin/about') }}" key="t-saas">About</a></li>
                                     <li><a href="{{ url('/admin/contacts') }}" key="t-saas">Contact Information</a></li>
+                                    <li><a href="{{ url('/admin/service') }}" key="t-saas">Service</a></li>
+                                    <li><a href="{{ url('/admin/certificate') }}" key="t-saas">Certificate</a></li>
+                                    <li><a href="{{ url('/admin/counter') }}" key="t-saas">Counter</a></li>
 
                                 </ul>
                             </li>
@@ -159,11 +162,17 @@
                                 </a>
                             </li>
 
+
                             <li>
-                                <a href="{{ url('/admin/projects') }}" class="waves-effect">
+                                <a href="javascript: void(0);" class="has-arrow waves-effect">
                                     <i class="bx bx-folder-open"></i>
-                                    <span key="t-category">Project</span>
+                                    <span key="t-dashboards">Project</span>
                                 </a>
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="{{ url('/admin/projects') }}" key="t-saas">Add New Project</a></li>
+                                    <li><a href="{{ url('/admin/allProjects') }}" key="t-saas">All Projects</a></li>
+
+                                </ul>
                             </li>
 
                             <li>

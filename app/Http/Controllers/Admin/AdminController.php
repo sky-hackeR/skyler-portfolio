@@ -69,6 +69,13 @@ class AdminController extends Controller
         ]);
     }
 
+    public function allProjects(){
+        $projects = Project::all();
+        return view('admin.allProjects', [
+            'projects' => $projects
+        ]);
+    }
+
     public function contacts(){
         $contacts = ContactInfo::get();
         return view('admin.contacts', [
@@ -654,5 +661,7 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
+
+    
 
 }
