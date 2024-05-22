@@ -36,7 +36,7 @@
                 <h5 class="card-title">Project Details Form</h5>
                 <p class="card-title-desc">Enter the details of the project below.</p>
 
-                <form action="/projects" method="POST">
+                <form action="{{ url('/admin/addProject') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="col-md-6">
