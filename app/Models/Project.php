@@ -17,7 +17,6 @@ class Project extends Model
         'services',
         'project_type',
         'description',
-        'image',
         'about_project',
         'about_client',
     ];

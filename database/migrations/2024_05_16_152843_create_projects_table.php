@@ -21,7 +21,6 @@ class CreateProjectsTable extends Migration
             $table->string('services')->nullable();
             $table->string('project_type')->nullable();
             $table->text('description')->nullable();
-            $table->text('image')->nullable();
             $table->text('about_project')->nullable();
             $table->text('about_client')->nullable();
             $table->timestamps();

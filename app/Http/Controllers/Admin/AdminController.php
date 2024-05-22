@@ -696,25 +696,12 @@ class AdminController extends Controller
             'description' => 'required',
             'about_project' => 'required',
             'about_client' => 'required',
-            'image.*' => 'required'
         ]);
 
         if($validator->fails()) {
             alert()->error('Error', $validator->messages()->all()[0])->persistent('Close');
             return redirect()->back();
         }
-
-        $imageUrls = [];
-        // Check and upload images if they exist
-        if (!empty($request->image)) {
-            foreach ($request->file('image') as $index => $file) {
-                $imageUrl = cloudinary()->uploadFile($file->getRealPath())->getSecurePath();
-                $imageUrls["imageUrl_{$index}"] = $imageUrl;
-            }
-        }
-
-        // Concatenate image URLs into a single string
-        $imageUrlsString = implode('|', $imageUrls);
 
         $newProject = ([
             'title' => $request->title,
@@ -725,7 +712,6 @@ class AdminController extends Controller
             'description' => $request->description,
             'about_project' => $request->about_project,
             'about_client' => $request->about_client,
-            'image' => $imageUrlsString
         ]);
 
         if(Project::create($newProject)){
@@ -736,74 +722,6 @@ class AdminController extends Controller
         alert()->error('Oops!', 'Something went wrong')->persistent('Close');
         return redirect()->back();
     }
-
-    // public function deleteProject(Request $request){
-    //     $validator = Validator::make($request->all(), [
-    //         'exp_id' => 'required',
-    //     ]);
-
-    //     if($validator->fails()) {
-    //         alert()->error('Error', $validator->messages()->all()[0])->persistent('Close');
-    //         return redirect()->back();
-    //     }
-
-    //     if(!$exp = Experience::find($request->exp_id)){
-    //         alert()->error('Oops', 'Invalid Experience Information')->persistent('Close');
-    //         return redirect()->back();
-    //     }
-
-    //     if($exp->delete()){
-    //         alert()->success('Changes Saved', 'Experience record deleted successfully')->persistent('Close');
-    //         return redirect()->back();
-    //     }
-
-    //     alert()->error('Oops!', 'Something went wrong')->persistent('Close');
-    //     return redirect()->back();
-    // }
-
-    // public function editProject(Request $request){
-    //     $validator = Validator::make($request->all(), [
-    //         'exp_id' => 'required',
-    //     ]);
-
-    //     if($validator->fails()) {
-    //         alert()->error('Error', $validator->messages()->all()[0])->persistent('Close');
-    //         return redirect()->back();
-    //     }
-
-    //     if(!$exp = Experience::find($request->exp_id)){
-    //         alert()->error('Oops', 'Invalid Experience')->persistent('Close');
-    //         return redirect()->back();
-    //     }
-
-    //     if(!empty($request->start_year) && $request->start_year != $exp->start_year){
-    //         $exp->start_year = $request->start_year;
-    //     }
-
-    //     if(!empty($request->end_year) && $request->end_year != $exp->end_year){
-    //         $exp->end_year = $request->end_year;
-    //     }
-
-    //     if(!empty($request->position) && $request->position!= $exp->position){
-    //         $exp->position = $request->position;
-    //     }
-
-    //     if(!empty($request->company) && $request->company!= $exp->company){
-    //         $exp->company = $request->company;
-    //     }
-
-    //     if(!empty($request->description) && $request->description!= $exp->description){
-    //         $exp->description = $request->description;
-    //     }
-
-    //     if($exp->save()){
-    //         alert()->success('Changes Saved', 'Experience changes saved successfully')->persistent('Close');
-    //         return redirect()->back();
-    //     }
-
-    //     alert()->error('Oops!', 'Something went wrong')->persistent('Close');
-    //     return redirect()->back();
-    // }
 
     // Delete Project Method
     public function deleteProject(Request $request){
@@ -888,25 +806,6 @@ class AdminController extends Controller
         if (!empty($request->about_client) && $request->about_client != $project->about_client) {
             $project->about_client = $request->about_client;
         }
-
-        // Initialize an array to store the image URLs
-        $imageUrls = [];
-
-        // Check and upload images if they exist
-        if (!empty($request->image)) {
-            foreach ($request->file('image') as $index => $file) {
-                $imageUrl = cloudinary()->uploadFile($file->getRealPath())->getSecurePath();
-                $imageUrls[] = $imageUrl;
-            }
-            // Concatenate image URLs into a single string
-            $imageUrlsString = implode('|', $imageUrls);
-        } else {
-            // If no new images are uploaded, keep the existing image URLs
-            $imageUrlsString = $project->image;
-        }
-
-        // Update the project image field
-        $project->image = $imageUrlsString;
 
         // Save the updated project
         if ($project->save()) {
