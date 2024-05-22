@@ -74,6 +74,19 @@ Route::group(['prefix' => 'admin'], function () {
   Route::get('/about', [App\Http\Controllers\Admin\AdminController::class, 'about'])->name('about')->middleware(['auth:admin']);
   Route::post('/updateAbout', [App\Http\Controllers\Admin\AdminController::class, 'updateAbout'])->name('updateAbout')->middleware(['auth:admin']);
 
+  Route::get('/counter', [App\Http\Controllers\Admin\AdminController::class, 'counter'])->name('counter')->middleware(['auth:admin']);
+  Route::post('/updateCounter', [App\Http\Controllers\Admin\AdminController::class, 'updateCounter'])->name('updateCounter')->middleware(['auth:admin']);
+
+  Route::get('/service', [App\Http\Controllers\Admin\AdminController::class, 'service'])->name('service')->middleware(['auth:admin']);
+  Route::post('/addService', [App\Http\Controllers\Admin\AdminController::class, 'addService'])->name('addService')->middleware(['auth:admin']);
+  Route::post('/editService', [App\Http\Controllers\Admin\AdminController::class, 'editService'])->name('editService')->middleware(['auth:admin']);
+  Route::post('/deleteService', [App\Http\Controllers\Admin\AdminController::class, 'deleteService'])->name('deleteService')->middleware(['auth:admin']);
+
+  Route::get('/certificate', [App\Http\Controllers\Admin\AdminController::class, 'certificate'])->name('certificate')->middleware(['auth:admin']);
+  Route::post('/addCertificate', [App\Http\Controllers\Admin\AdminController::class, 'addCertificate'])->name('addCertificate')->middleware(['auth:admin']);
+  Route::post('/editCertificate', [App\Http\Controllers\Admin\AdminController::class, 'editCertificate'])->name('editCertificate')->middleware(['auth:admin']);
+  Route::post('/deleteCertificate', [App\Http\Controllers\Admin\AdminController::class, 'deleteCertificate'])->name('deleteCertificate')->middleware(['auth:admin']);
+
 
 
 

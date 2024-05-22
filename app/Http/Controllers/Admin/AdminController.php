@@ -20,6 +20,10 @@ use App\Models\Experience;
 use App\Models\Education;
 use App\Models\Project;
 use App\Models\Skill;
+use App\Models\Counter;
+use App\Models\Certificate;
+use App\Models\Service;
+
 
 use SweetAlert;
 use Alert;
@@ -80,6 +84,27 @@ class AdminController extends Controller
         $contacts = ContactInfo::get();
         return view('admin.contacts', [
             'contacts' => $contacts
+        ]);
+    }
+
+    public function counter(){
+        $counters = Counter::get();
+        return view('admin.counter', [
+            'counters' => $counters
+        ]);
+    }
+
+    public function certificate(){
+        $certificates = Certificate::get();
+        return view('admin.certificate', [
+            'certificates' => $certificates
+        ]);
+    }
+
+    public function service(){
+        $services = Service::get();
+        return view('admin.service', [
+            'services' => $services
         ]);
     }
 
@@ -661,7 +686,439 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
+    public function addProject(Request $request){
+        $validator = Validator::make($request->all(), [
+            'title' => 'required',
+            'client' => 'required',
+            'year' => 'required',
+            'services' => 'required',
+            'project_type' => 'required',
+            'description' => 'required',
+            'about_project' => 'required',
+            'about_client' => 'required',
+            'image.*' => 'required'
+        ]);
 
-    
+        if($validator->fails()) {
+            alert()->error('Error', $validator->messages()->all()[0])->persistent('Close');
+            return redirect()->back();
+        }
+
+        $imageUrls = [];
+        // Check and upload images if they exist
+        if (!empty($request->image)) {
+            foreach ($request->file('image') as $index => $file) {
+                $imageUrl = cloudinary()->uploadFile($file->getRealPath())->getSecurePath();
+                $imageUrls["imageUrl_{$index}"] = $imageUrl;
+            }
+        }
+
+        // Concatenate image URLs into a single string
+        $imageUrlsString = implode('|', $imageUrls);
+
+        $newProject = ([
+            'title' => $request->title,
+            'client' => $request->client,
+            'year' => $request->year,
+            'services' => $request->services,
+            'project_type' => $request->project_type,
+            'description' => $request->description,
+            'about_project' => $request->about_project,
+            'about_client' => $request->about_client,
+            'image' => $imageUrlsString
+        ]);
+
+        if(Project::create($newProject)){
+            alert()->success('Changes Saved', 'Experience added successfully')->persistent('Close');
+            return redirect()->back();
+        }
+
+        alert()->error('Oops!', 'Something went wrong')->persistent('Close');
+        return redirect()->back();
+    }
+
+    // public function deleteProject(Request $request){
+    //     $validator = Validator::make($request->all(), [
+    //         'exp_id' => 'required',
+    //     ]);
+
+    //     if($validator->fails()) {
+    //         alert()->error('Error', $validator->messages()->all()[0])->persistent('Close');
+    //         return redirect()->back();
+    //     }
+
+    //     if(!$exp = Experience::find($request->exp_id)){
+    //         alert()->error('Oops', 'Invalid Experience Information')->persistent('Close');
+    //         return redirect()->back();
+    //     }
+
+    //     if($exp->delete()){
+    //         alert()->success('Changes Saved', 'Experience record deleted successfully')->persistent('Close');
+    //         return redirect()->back();
+    //     }
+
+    //     alert()->error('Oops!', 'Something went wrong')->persistent('Close');
+    //     return redirect()->back();
+    // }
+
+    // public function editProject(Request $request){
+    //     $validator = Validator::make($request->all(), [
+    //         'exp_id' => 'required',
+    //     ]);
+
+    //     if($validator->fails()) {
+    //         alert()->error('Error', $validator->messages()->all()[0])->persistent('Close');
+    //         return redirect()->back();
+    //     }
+
+    //     if(!$exp = Experience::find($request->exp_id)){
+    //         alert()->error('Oops', 'Invalid Experience')->persistent('Close');
+    //         return redirect()->back();
+    //     }
+
+    //     if(!empty($request->start_year) && $request->start_year != $exp->start_year){
+    //         $exp->start_year = $request->start_year;
+    //     }
+
+    //     if(!empty($request->end_year) && $request->end_year != $exp->end_year){
+    //         $exp->end_year = $request->end_year;
+    //     }
+
+    //     if(!empty($request->position) && $request->position!= $exp->position){
+    //         $exp->position = $request->position;
+    //     }
+
+    //     if(!empty($request->company) && $request->company!= $exp->company){
+    //         $exp->company = $request->company;
+    //     }
+
+    //     if(!empty($request->description) && $request->description!= $exp->description){
+    //         $exp->description = $request->description;
+    //     }
+
+    //     if($exp->save()){
+    //         alert()->success('Changes Saved', 'Experience changes saved successfully')->persistent('Close');
+    //         return redirect()->back();
+    //     }
+
+    //     alert()->error('Oops!', 'Something went wrong')->persistent('Close');
+    //     return redirect()->back();
+    // }
+
+    // Delete Project Method
+    public function deleteProject(Request $request){
+
+        // Validate the request
+        $validator = Validator::make($request->all(), [
+            'project_id' => 'required',
+        ]);
+
+        // Check for validation errors
+        if ($validator->fails()) {
+            alert()->error('Error', $validator->messages()->all()[0])->persistent('Close');
+            return redirect()->back();
+        }
+
+        // Find the project by ID
+        if (!$project = Project::find($request->project_id)) {
+            alert()->error('Oops', 'Invalid Project')->persistent('Close');
+            return redirect()->back();
+        }
+
+        // Delete the project
+        if ($project->delete()) {
+            alert()->success('Changes Saved', 'Project record deleted successfully')->persistent('Close');
+            return redirect()->back();
+        }
+
+        // Handle errors
+        alert()->error('Oops!', 'Something went wrong')->persistent('Close');
+        return redirect()->back();
+    }
+
+    // Edit Project Method
+    public function editProject(Request $request){
+
+        // Validate the request
+        $validator = Validator::make($request->all(), [
+            'project_id' => 'required',
+        ]);
+
+        // Check for validation errors
+        if ($validator->fails()) {
+            alert()->error('Error', $validator->messages()->all()[0])->persistent('Close');
+            return redirect()->back();
+        }
+
+        // Find the project by ID
+        if (!$project = Project::find($request->project_id)) {
+            alert()->error('Oops', 'Invalid Project')->persistent('Close');
+            return redirect()->back();
+        }
+
+        // Update project details conditionally
+        if (!empty($request->title) && $request->title != $project->title) {
+            $project->title = $request->title;
+        }
+
+        if (!empty($request->client) && $request->client != $project->client) {
+            $project->client = $request->client;
+        }
+
+        if (!empty($request->year) && $request->year != $project->year) {
+            $project->year = $request->year;
+        }
+
+        if (!empty($request->services) && $request->services != $project->services) {
+            $project->services = $request->services;
+        }
+
+        if (!empty($request->project_type) && $request->project_type != $project->project_type) {
+            $project->project_type = $request->project_type;
+        }
+
+        if (!empty($request->description) && $request->description != $project->description) {
+            $project->description = $request->description;
+        }
+
+        if (!empty($request->about_project) && $request->about_project != $project->about_project) {
+            $project->about_project = $request->about_project;
+        }
+
+        if (!empty($request->about_client) && $request->about_client != $project->about_client) {
+            $project->about_client = $request->about_client;
+        }
+
+        // Initialize an array to store the image URLs
+        $imageUrls = [];
+
+        // Check and upload images if they exist
+        if (!empty($request->image)) {
+            foreach ($request->file('image') as $index => $file) {
+                $imageUrl = cloudinary()->uploadFile($file->getRealPath())->getSecurePath();
+                $imageUrls[] = $imageUrl;
+            }
+            // Concatenate image URLs into a single string
+            $imageUrlsString = implode('|', $imageUrls);
+        } else {
+            // If no new images are uploaded, keep the existing image URLs
+            $imageUrlsString = $project->image;
+        }
+
+        // Update the project image field
+        $project->image = $imageUrlsString;
+
+        // Save the updated project
+        if ($project->save()) {
+            alert()->success('Changes Saved', 'Project changes saved successfully')->persistent('Close');
+            return redirect()->back();
+        }
+
+        // Handle errors
+        alert()->error('Oops!', 'Something went wrong')->persistent('Close');
+        return redirect()->back();
+    }
+
+
+    public function updateCounter(Request $request){
+        $validator = Validator::make($request->all(), [
+            'year' => 'required',
+            'clients' => 'required',
+            'projects' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            alert()->error('Error', $validator->messages()->first())->persistent('Close');
+            return redirect()->back();
+        }
+
+        // Find the existing about record or create a new one
+        $counter = Counter::first();
+
+        if (!$counter) {
+            $counter = new Counter();
+        }
+
+        // Update the about statement
+        $counter->year = $request->year;
+        $counter->clients = $request->clients;
+        $counter->projects = $request->projects;
+
+        if ($counter->save()) {
+            alert()->success('Changes Saved', 'Counter updated successfully')->persistent('Close');
+            return redirect()->back();
+        }
+
+        alert()->error('Oops!', 'Something went wrong')->persistent('Close');
+        return redirect()->back();
+    }
+
+    public function addCertificate(Request $request){
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'date' => 'required',
+            'description' => 'required',
+        ]);
+
+        if($validator->fails()) {
+            alert()->error('Error', $validator->messages()->all()[0])->persistent('Close');
+            return redirect()->back();
+        }
+
+        $newCertificate = ([
+            'name' => $request->name,
+            'date' => $request->date,
+            'description' => $request->description,
+        ]);
+
+        if(Certificate::create($newCertificate)){
+            alert()->success('Changes Saved', 'Certificate added successfully')->persistent('Close');
+            return redirect()->back();
+        }
+
+        alert()->error('Oops!', 'Something went wrong')->persistent('Close');
+        return redirect()->back();
+    }
+
+    public function deleteCertificate(Request $request){
+        $validator = Validator::make($request->all(), [
+            'certificate_id' => 'required',
+        ]);
+
+        if($validator->fails()) {
+            alert()->error('Error', $validator->messages()->all()[0])->persistent('Close');
+            return redirect()->back();
+        }
+
+        if(!$certificate = Certificate::find($request->certificate_id)){
+            alert()->error('Oops', 'Invalid Certificate Information')->persistent('Close');
+            return redirect()->back();
+        }
+
+        if($certificate->delete()){
+            alert()->success('Changes Saved', 'Certificate information deleted successfully')->persistent('Close');
+            return redirect()->back();
+        }
+
+        alert()->error('Oops!', 'Something went wrong')->persistent('Close');
+        return redirect()->back();
+    }
+
+    public function editCertificate(Request $request){
+        $validator = Validator::make($request->all(), [
+            'certificate_id' => 'required',
+        ]);
+
+        if($validator->fails()) {
+            alert()->error('Error', $validator->messages()->all()[0])->persistent('Close');
+            return redirect()->back();
+        }
+
+        if(!$certificate = Certificate::find($request->certificate_id)){
+            alert()->error('Oops', 'Invalid Certificate Information')->persistent('Close');
+            return redirect()->back();
+        }
+
+        if(!empty($request->name) && $request->name != $certificate->name){
+            $certificate->name = $request->name;
+        }
+
+        if(!empty($request->date) && $request->date != $certificate->date){
+            $certificate->date = $request->date;
+        }
+
+        if(!empty($request->description) && $request->description!= $certificate->description){
+            $certificate->description = $request->description;
+        }
+
+        if($certificate->save()){
+            alert()->success('Changes Saved', 'Certificate information changes saved successfully')->persistent('Close');
+            return redirect()->back();
+        }
+
+        alert()->error('Oops!', 'Something went wrong')->persistent('Close');
+        return redirect()->back();
+    }
+
+    public function addService(Request $request){
+        $validator = Validator::make($request->all(), [
+            'title' => 'required',
+            'description' => 'required',
+        ]);
+
+        if($validator->fails()) {
+            alert()->error('Error', $validator->messages()->all()[0])->persistent('Close');
+            return redirect()->back();
+        }
+
+        $newService = ([
+            'title' => $request->title,
+            'description' => $request->description,
+        ]);
+
+        if(Service::create($newService)){
+            alert()->success('Changes Saved', 'Service added successfully')->persistent('Close');
+            return redirect()->back();
+        }
+
+        alert()->error('Oops!', 'Something went wrong')->persistent('Close');
+        return redirect()->back();
+    }
+
+    public function deleteService(Request $request){
+        $validator = Validator::make($request->all(), [
+            'service_id' => 'required',
+        ]);
+
+        if($validator->fails()) {
+            alert()->error('Error', $validator->messages()->all()[0])->persistent('Close');
+            return redirect()->back();
+        }
+
+        if(!$service = Certificate::find($request->service_id)){
+            alert()->error('Oops', 'Invalid Service Information')->persistent('Close');
+            return redirect()->back();
+        }
+
+        if($service->delete()){
+            alert()->success('Changes Saved', 'Service deleted successfully')->persistent('Close');
+            return redirect()->back();
+        }
+
+        alert()->error('Oops!', 'Something went wrong')->persistent('Close');
+        return redirect()->back();
+    }
+
+    public function editService(Request $request){
+        $validator = Validator::make($request->all(), [
+            'service_id' => 'required',
+        ]);
+
+        if($validator->fails()) {
+            alert()->error('Error', $validator->messages()->all()[0])->persistent('Close');
+            return redirect()->back();
+        }
+
+        if(!$service = Service::find($request->service_id)){
+            alert()->error('Oops', 'Invalid Service Information')->persistent('Close');
+            return redirect()->back();
+        }
+
+        if(!empty($request->title) && $request->title != $service->title){
+            $service->title = $request->title;
+        }
+
+        if(!empty($request->description) && $request->description!= $service->description){
+            $service->description = $request->description;
+        }
+
+        if($service->save()){
+            alert()->success('Changes Saved', 'Service information changes saved successfully')->persistent('Close');
+            return redirect()->back();
+        }
+
+        alert()->error('Oops!', 'Something went wrong')->persistent('Close');
+        return redirect()->back();
+    }
 
 }
