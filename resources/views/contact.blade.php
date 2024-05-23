@@ -44,7 +44,7 @@
 
                 <h3 data-aos="fade-up">Social Info</h3>
                 <ul class="social-links d-flex align-center" data-aos="zoom-in">
-                    @foreach ($socials as $social)
+                    @foreach ($socials->take(3) as $social)
                         <li><a class="shadow-box" href="{{ $social->link }}"><i class="{{ $social->icon }}"></i></a></li>
                     @endforeach
                 </ul>

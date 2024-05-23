@@ -17,7 +17,23 @@
                     <div class="infos">
                         <h4>A SOFTWARE ENGINEER</h4>
                         <h1>{{ !empty($pageGlobalData->setting) ? $pageGlobalData->setting->username : "" }}.</h1>
-                        <p>I am a Web Designer based in san francisco.</p>
+                        @foreach($about as $item)
+                            @php
+                                $firstSentence = strstr($item->description, '.');
+                                if ($firstSentence === false) {
+                                    $firstSentence = strstr($item->description, '!');
+                                }
+                                if ($firstSentence === false) {
+                                    $firstSentence = strstr($item->description, '?');
+                                }
+                                if ($firstSentence === false) {
+                                    $firstSentence = $item->description;
+                                } else {
+                                    $firstSentence = substr($item->description, 0, strpos($item->description, $firstSentence) + 1);
+                                }
+                            @endphp
+                            <p>{!! $firstSentence !!}</p>
+                        @endforeach
                         <a href="{{ url('/about') }}" class="about-btn">
                             <img src="{{ asset('frontAssets/images/icon.svg') }}" alt="Button">
                         </a>

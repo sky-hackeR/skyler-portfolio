@@ -36,9 +36,11 @@ class PageController extends Controller
     //
 
     public function welcome() {
+        $about= About::get();
         $counter = Counter::all();
         $socials = Social::all();
         return view('welcome',[
+            'about' => $about,
             'counter' => $counter,
             'socials' => $socials
         ]);
@@ -67,8 +69,20 @@ class PageController extends Controller
     }
 
     public function credentials() {
-        
-        return view('credentials');
+        $socials = Social::all();
+        $about = About::get();
+        $skill = Skill::all();
+        $certificate = Certificate::all();
+        $experience = Experience::all();
+        $education = Education::all();
+        return view('credentials',[
+            'socials' => $socials,
+            'about' => $about,
+            'skill' => $skill,
+            'certificate' => $certificate,
+            'experience' => $experience,
+            'education' => $education
+        ]);
     }
 
     public function project() {
