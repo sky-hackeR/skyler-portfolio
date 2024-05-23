@@ -17,11 +17,13 @@
             </div>
 
             <div class="about-details" data-aos="zoom-in">
-                <h1 class="section-heading" data-aos="fade-up"><img src="{{ asset('frontAssets/images/star-2.png') }}" alt="Star"> Self-summary <img src="{{ asset('frontAssets/images/star-2.png') }}" alt="Star"></h1>
+                <h1 class="section-heading" data-aos="fade-up"><img src="{{ asset('frontAssets/images/star-2.png') }}" alt="Star">  @foreach($about as $item) {{ $item->title }} @endforeach<img src="{{ asset('frontAssets/images/star-2.png') }}" alt="Star"></h1>
                 <div class="about-details-inner shadow-box">
                     <img src="{{ asset('frontAssets/images/icon2.png') }}" alt="Star">
                     <h1>{{ !empty($pageGlobalData->setting) ? $pageGlobalData->setting->username : "" }}</h1>
-                    <p>I am a San francisco-based product designer with a focus on web design, illustration, a visual development. I have a diverse range of experience having worked across various fields and industries.</p>
+                    @foreach($about as $item)
+                        <p>{!! $item->description !!}</p>
+                    @endforeach
                 </div>
 
             </div>
@@ -34,35 +36,31 @@
                     <h3>EXPERIENCE</h3>
 
                     <ul>
-                        <li>
-                            <p class="date">2007 - 2017</p>
-                            <h2>Framer Designer & Developer</h2>
-                            <p class="type">Bluebase Designs</p>
-                        </li>
-                        <li>
-                            <p class="date">2017 - 2023</p>
-                            <h2>Front-End Developer</h2>
-                            <p class="type">Larsen & Toubro</p>
-                        </li>
+                        @foreach($experience as $exp)
+                            <li>
+                                <p class="date">{{ $exp->start_year }} - {{ $exp->end_year }}</p>
+                                <h2>{{ $exp->position }}</h2>
+                                <p class="type">{{ $exp->company }}</p>
+                                <p>{{ $exp->description }}</p>
+                            </li>
+                        @endforeach
                     </ul>
                 </div>
             </div>
             <div class="col-md-6" data-aos="zoom-in">
                 <div class="about-edc-exp about-education shadow-box">
-                    <img src="assets/images/bg1.png" alt="BG" class="bg-img">
+                    <img src="{{ asset('frontAssets/images/bg1.png') }}" alt="BG" class="bg-img">
                     <h3>EDUCATION</h3>
 
                     <ul>
+                        @foreach($education as $edu)
                         <li>
-                            <p class="date">2004 - 2007</p>
-                            <h2>Bachelor Degree in Psychology</h2>
-                            <p class="type">University of California</p>
+                            <p class="date">{{ $edu->start_year }} - {{ $edu->end_year }}</p>
+                            <h2>{{ $edu->position }}</h2>
+                            <p class="type">{{ $edu->company }}</p>
+                            <p>{{ $edu->description }}</p>
                         </li>
-                        <li>
-                            <p class="date">2007 - 2009</p>
-                            <h2>Master Degree in Designing</h2>
-                            <p class="type">University of Texas</p>
-                        </li>
+                        @endforeach
                     </ul>
                 </div>
             </div>
@@ -74,14 +72,13 @@
 
                     <div data-aos="zoom-in">
                         <div class="about-profile-box info-box shadow-box h-full">
-                            <img src="assets/images/bg1.png" alt="BG" class="bg-img">
+                            <img src="{{ asset('frontAssets/images/bg1.png') }}" alt="BG" class="bg-img">
                             <div class="inner-profile-icons shadow-box">
-                                <a href="#">
-                                    <i class="iconoir-dribbble"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="iconoir-twitter"></i>
-                                </a>
+                                @foreach ($socials->take(2) as $social)
+                                    <a href="{{ $social->link }}">
+                                        <i class="{{ $social->icon }}"></i>
+                                    </a>
+                                @endforeach
                             </div>
                             <div class="d-flex align-items-center justify-content-between">
                                 <div class="infos">
@@ -89,8 +86,8 @@
                                     <h1>Profiles</h1>
                                 </div>
 
-                                <a href="contact.html" class="about-btn">
-                                    <img src="assets/images/icon.svg" alt="Button">
+                                <a href="{{ url('/contact') }}" class="about-btn">
+                                    <img src="{{ asset('frontAssets/images/icon.svg') }}" alt="Button">
                                 </a>
 
                             </div>
@@ -99,29 +96,29 @@
 
                     <div data-aos="zoom-in" class="flex-1">
                         <div class="about-contact-box info-box shadow-box">
-                            <a class="overlay-link" href="contact.html"></a>
-                            <img src="assets/images/bg1.png" alt="BG" class="bg-img">
-                            <img src="assets/images/icon2.png" alt="Icon" class="star-icon">
+                            <a class="overlay-link" href="{{ url('/contact') }}"></a>
+                            <img src="{{ asset('frontAssets/images/bg1.png') }}" alt="BG" class="bg-img">
+                            <img src="{{ asset('frontAssets/images/icon2.png') }}" alt="Icon" class="star-icon">
                             <h1>Let's <br>work <span>together.</span></h1>
-                            <a href="contact.html" class="about-btn">
-                                <img src="assets/images/icon.svg" alt="Button">
+                            <a href="{{ url('/contact') }}" class="about-btn">
+                                <img src="{{ asset('frontAssets/images/icon.svg') }}" alt="Button">
                             </a>
                         </div>
                     </div>
 
                     <div data-aos="zoom-in" class="h-full">
                         <div class="about-crenditials-box info-box shadow-box">
-                            <a class="overlay-link" href="credentials.html"></a>
-                            <img src="assets/images/bg1.png" alt="BG" class="bg-img">
-                            <img src="assets/images/sign.png" alt="Sign">
+                            <a class="overlay-link" href="{{ url('/credentials') }}"></a>
+                            <img src="{{ asset('frontAssets/images/bg1.png') }}" alt="BG" class="bg-img">
+                            <img src="{{ asset('frontAssets/images/sign.png') }}" alt="Sign">
                             <div class="d-flex align-items-center justify-content-between">
                                 <div class="infos">
                                     <h4>more about me</h4>
                                     <h1>Credentials</h1>
                                 </div>
 
-                                <a href="credentials.html" class="about-btn">
-                                    <img src="assets/images/icon.svg" alt="Button">
+                                <a href="{{ url('/credentials') }}" class="about-btn">
+                                    <img src="{{ asset('frontAssets/images/icon.svg') }}" alt="Button">
                                 </a>
 
                             </div>

@@ -134,6 +134,7 @@ class AdminController extends Controller
         $validator = Validator::make($request->all(), [
             'about' => 'required',
             'title' => 'required',
+            'description' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -151,6 +152,7 @@ class AdminController extends Controller
         // Update the about statement
         $about->about = $request->about;
         $about->title = $request->title;
+        $about->description = $request->description;
 
         if ($about->save()) {
             alert()->success('Changes Saved', 'About Us updated successfully')->persistent('Close');

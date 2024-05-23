@@ -37,14 +37,24 @@ class PageController extends Controller
 
     public function welcome() {
         $counter = Counter::all();
+        $socials = Social::all();
         return view('welcome',[
-            'counter' => $counter
+            'counter' => $counter,
+            'socials' => $socials
         ]);
     }
 
     public function about() {
-        
-        return view('about');
+        $about= About::get();
+        $socials = Social::all();
+        $experience = Experience::all();
+        $education = Education::all();
+        return view('about',[
+            'about' => $about,
+            'socials' => $socials,
+            'experience' => $experience,
+            'education' => $education
+        ]);
     }
 
     public function contact() {

@@ -15,7 +15,7 @@
                         <img src="{{ !empty($pageGlobalData->setting) ? $pageGlobalData->setting->image : "" }}" alt="Logo" height="40">" alt="About Me">
                     </div>
                     <div class="infos">
-                        <h4>A WEB DESIGNER</h4>
+                        <h4>A SOFTWARE ENGINEER</h4>
                         <h1>{{ !empty($pageGlobalData->setting) ? $pageGlobalData->setting->username : "" }}.</h1>
                         <p>I am a Web Designer based in san francisco.</p>
                         <a href="{{ url('/about') }}" class="about-btn">
@@ -132,12 +132,11 @@
                         <div class="about-profile-box info-box shadow-box h-full">
                             <img src="{{ asset('frontAssets/images/bg1.png') }}" alt="BG" class="bg-img">
                             <div class="inner-profile-icons shadow-box">
-                                <a href="#">
-                                    <i class="iconoir-github"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="iconoir-linkedin"></i>
-                                </a>
+                                @foreach ($socials->take(2) as $social)
+                                    <a href="{{ $social->link }}">
+                                        <i class="{{ $social->icon }}"></i>
+                                    </a>
+                                @endforeach
                             </div>
                             <div class="d-flex align-items-center justify-content-between">
                                 <div class="infos">

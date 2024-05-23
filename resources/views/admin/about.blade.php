@@ -11,16 +11,18 @@
         toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
     });
     
-    function setAboutContent(title, content) {
+    function setAboutContent(title, content, description) {
         document.getElementById('title').value = title;
         tinymce.get('about').setContent(content);
+        tinymce.get('description').setContent(description);
     }
     
     document.addEventListener('DOMContentLoaded', function () {
         document.querySelector('.edit').addEventListener('click', function () {
         var aboutTitle = this.getAttribute('data-about-title');
+        var aboutDescription = this.getAttribute('data-about-description');
         var aboutContent = this.getAttribute('data-about-content');
-        setAboutContent(aboutTitle, aboutContent);
+        setAboutContent(aboutTitle, aboutContent, aboutDescription,);
         });
     });
 </script>
@@ -63,6 +65,17 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="mb-3">
+                                <label for="body">About Description</label>
+                                <textarea name="description" class="form-control" id="description" cols="30" rows="10">   </textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr>
+                    <hr>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="mb-3">
                                 <label for="body">About Statement</label>
                                 <textarea name="about" class="form-control" id="about" cols="30" rows="10">   </textarea>
                             </div>
@@ -82,7 +95,7 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between">
                     <h5 class="card-title mb-4">Current About Title and Statement</h5>
-                    <button class="btn btn-outline-success edit" title="Edit" data-about-title="{!! !empty($about) ? ($about->title) : '' !!}" data-about-content="{!! !empty($about) ? htmlspecialchars($about->about) : '' !!}">
+                    <button class="btn btn-outline-success edit" title="Edit" data-about-title="{!! !empty($about) ? ($about->title) : '' !!}" data-about-description="{!! !empty($about) ? ($about->description) : '' !!}"  data-about-content="{!! !empty($about) ? htmlspecialchars($about->about) : '' !!}">
                         <i class="fas fa-pencil-alt"></i>
                     </button>
                 </div>
@@ -95,6 +108,15 @@
                         </div>
                         <br>
                         <hr>
+
+                        <div class="mb-3">
+                            <h6>Description</h6>
+                            <p>{!! $about->description !!}</p>
+                        </div>
+                        <br>
+                        <hr>
+
+
                         <div class="mb-3">
                             <h6>About Statement</h6>
                             <p>{!! $about->about !!}</p>

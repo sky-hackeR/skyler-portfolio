@@ -36,13 +36,13 @@
 
                     <nav class="navbar">
                         <ul class="menu">
-                            <li class="active"><a href="{{ url('/') }}">Home</a></li>
-                            <li><a href="{{ url('/about') }}">About</a></li>
-                            <li><a href="{{ url('/project') }}">Projects</a></li>
-                            <li><a href="{{ url('/contact') }}">Contact</a></li>
+                            <li class="{{ request()->is('/') ? 'active' : '' }}"><a href="{{ url('/') }}">Home</a></li>
+                            <li class="{{ request()->is('about') ? 'active' : '' }}"><a href="{{ url('/about') }}">About</a></li>
+                            <li class="{{ request()->is('project') ? 'active' : '' }}"><a href="{{ url('/project') }}">Projects</a></li>
+                            <li class="{{ request()->is('contact') ? 'active' : '' }}"><a href="{{ url('/contact') }}">Contact</a></li>
                         </ul>
                         <a href="{{ url('/contact') }}" class="theme-btn">Let's talk</a>
-                    </nav>
+                    </nav>                    
 
                     <a href="{{ url('/contact') }}" class="theme-btn">Let's talk</a>
 
