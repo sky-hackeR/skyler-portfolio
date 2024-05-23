@@ -944,6 +944,7 @@ class AdminController extends Controller
 
     public function addService(Request $request){
         $validator = Validator::make($request->all(), [
+            'icon' => 'required',
             'title' => 'required',
             'description' => 'required',
         ]);
@@ -954,6 +955,7 @@ class AdminController extends Controller
         }
 
         $newService = ([
+            'icon' => $request->icon,
             'title' => $request->title,
             'description' => $request->description,
         ]);
@@ -1004,6 +1006,10 @@ class AdminController extends Controller
         if(!$service = Service::find($request->service_id)){
             alert()->error('Oops', 'Invalid Service Information')->persistent('Close');
             return redirect()->back();
+        }
+
+        if(!empty($request->icon) && $request->icon != $service->icon){
+            $service->icon = $request->icon;
         }
 
         if(!empty($request->title) && $request->title != $service->title){

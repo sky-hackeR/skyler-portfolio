@@ -9,20 +9,17 @@
             <div class="credential-sidebar-wrap" data-aos="zoom-in">
                 <div class="credential-sidebar text-center">
                     <div class="shadow-box">
-                        <img src="assets/images/bg1.png" alt="BG" class="bg-img">
+                        <img src="{{ asset('frontAssets/images/bg1.png') }}" alt="BG" class="bg-img">
                         <div class="img-box">
-                            <img src="assets/images/me.png" alt="About Me">
+                            <img src="{{ !empty($pageGlobalData->setting) ? $pageGlobalData->setting->image : "" }}" alt="About Me">
                         </div>
-                        <h2>David Henderson</h2>
-                        <p>@davidhenderson</p>
-
-                        {{-- @foreach ($socials as $social) --}}
-                            <ul class="social-links d-flex justify-content-center">
-                                @foreach ($socials as $social)
-                                    <li><a href="{{ $social->link }}"><i class="{{ $social->icon }}"></i></a></li>
-                                @endforeach
-                            </ul>
-                        {{-- @endforeach --}}
+                        <h2></h2>
+                        <p>@sky-hackeR</p>
+                        <ul class="social-links d-flex justify-content-center">
+                            @foreach ($socials->take(4) as $social)
+                                <li><a href="{{ $social->link }}"><i class="{{ $social->icon }}"></i></a></li>
+                            @endforeach
+                        </ul>
                         <a href="{{ url('/contact') }}" class="theme-btn">Contact Me</a>
                     </div>
                 </div>

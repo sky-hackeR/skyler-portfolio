@@ -40,6 +40,18 @@
 
                     <form action="{{ url('/admin/addService') }}" method="POST" enctype="multipart/form-data">
                         @csrf
+
+                        <div class="form-floating mb-3">
+                            <select class="form-select" name="icon" id="icon" aria-label="Select Social Media Icon">
+                                <option value="" selected>Select Service Icon</option>
+                                <option value="iconoir-code"><i class="iconoir-code"></i> Development Icon</option>
+                                <option value="iconoir-design-pencil"><i class="iconoir-design-pencil"></i> Writing Icon</option>
+                                <option value="iconoir-color-filter"><i class="iconoir-color-filter"></i> Design Icon</option>
+                                <option value="iconoir-camera"><i class="iconoir-camera"></i> Camera Icon</option>
+                            </select>
+                            <label for="icon">Select Service Icon</label>
+                        </div>                        
+
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control" id="title" placeholder="Enter Title" name="title">
                             <label for="title">Title</label>
@@ -98,6 +110,18 @@
                                                                 @csrf
                                                                 <input type="hidden" name="service_id" value="{{ $service->id }}">
                                                                 <div class="modal-body">
+
+                                                                    <div class="form-floating mb-3">
+                                                                        <select class="form-select" name="icon" id="icon" aria-label="Select Social Media Icon">
+                                                                            <option value="" selected>Select Service Icon</option>
+                                                                            <option value="iconoir-code" {{ $service->icon == 'iconoir-code' ? 'selected' : '' }}><i class="iconoir-code"></i> Development Icon</option>
+                                                                            <option value="iconoir-design-pencil" {{ $service->icon == 'iconoir-design-pencil' ? 'selected' : '' }}><i class="iconoir-design-pencil"></i> Writing Icon</option>
+                                                                            <option value="iconoir-color-filter" {{ $service->icon == 'iconoir-color-filter' ? 'selected' : '' }}><i class="iconoir-color-filter"></i> Design Icon</option>
+                                                                            <option value="iconoir-camera" {{ $service->icon == 'iconoir-camera' ? 'selected' : '' }}><i class="iconoir-camera"></i> Camera Icon</option>
+                                                                        </select>
+                                                                        <label for="icon">Select Service Icon</label>
+                                                                    </div>                                                                    
+
                                                                     <div class="mb-3">
                                                                         <label for="title" class="form-label">Title</label>
                                                                         <input type="text" class="form-control" id="title" name="title" value="{{ $service->title }}">

@@ -7,8 +7,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gridx - Personal Portfolio HTML Template</title>
-
+    <title>{{ !empty($pageGlobalData->setting) ? $pageGlobalData->setting->description : "Solution to All" }}</title>
+    
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{ !empty($pageGlobalData->setting) ? $pageGlobalData->setting->favicon : null }}">
 

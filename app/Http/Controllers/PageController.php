@@ -91,8 +91,12 @@ class PageController extends Controller
     }
 
     public function services() {
-        
-        return view('services');
+        $socials = Social::all();
+        $service = Service::all();
+        return view('services',[
+            'socials' => $socials,
+            'service' => $service, 
+        ]);
     }
 
     public function coming() {

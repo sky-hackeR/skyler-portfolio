@@ -10,9 +10,9 @@
             <div class="col-md-6" data-aos="zoom-in">
                 <div class="about-me-box shadow-box">
                     <a class="overlay-link" href="{{ url('/about') }}"></a>
-                    <img src="assets/images/bg1.png" alt="BG" class="bg-img">
+                    <img src="{{ asset('frontAssets/images/bg1.png') }}" alt="BG" class="bg-img">
                     <div class="img-box">
-                        <img src="{{ !empty($pageGlobalData->setting) ? $pageGlobalData->setting->image : "" }}" alt="Logo" height="40">" alt="About Me">
+                        <img src="{{ !empty($pageGlobalData->setting) ? $pageGlobalData->setting->image : "" }}" height="40" alt="About Me">
                     </div>
                     <div class="infos">
                         <h4>A SOFTWARE ENGINEER</h4>
