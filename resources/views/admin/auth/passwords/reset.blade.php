@@ -16,16 +16,16 @@
     <div class="auth-logo">
         <a href="{{ url('/') }}" class="auth-logo-light">
             <div class="avatar-md profile-user-wid mb-4">
-                <span class="avatar-title rounded-circle bg-light">
-                    <img src=" {{ !empty($pageGlobalData->setting)?$pageGlobalData->setting->logo_light:null }}" alt="" class="rounded avatar-sm" height="15">
+                <span class="avatar-title rounded-circle bg-grey">
+                    <img src=" {{ !empty($pageGlobalData->setting)?$pageGlobalData->setting->favicon:null }}" alt="" class="rounded avatar-sm" height="15">
                 </span>
             </div>
         </a>
 
         <a href="{{ url('/') }}" class="auth-logo-dark">
             <div class="avatar-md profile-user-wid mb-4">
-                <span class="avatar-title rounded-circle bg-light">
-                    <img src=" {{ !empty($pageGlobalData->setting)?$pageGlobalData->setting->logo_dark:null }}" alt="" class="rounded avatar-sm" height="15">
+                <span class="avatar-title rounded-circle bg-grey">
+                    <img src=" {{ !empty($pageGlobalData->setting)?$pageGlobalData->setting->favicon:null }}" alt="" class="rounded avatar-sm" height="15">
                 </span>
             </div>
         </a>

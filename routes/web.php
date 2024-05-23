@@ -12,13 +12,12 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\PageController::class, 'welcome'])->name('welcome');
+Route::get('/about', [App\Http\Controllers\PageController::class, 'about'])->name('about');
+Route::get('/contact', [App\Http\Controllers\PageController::class, 'contact'])->name('contact');
+Route::get('/credentials', [App\Http\Controllers\PageController::class, 'credentials'])->name('credentials');
+Route::get('/project', [App\Http\Controllers\PageController::class, 'project'])->name('project');
+Route::get('/services', [App\Http\Controllers\PageController::class, 'services'])->name('services');
 
 Route::group(['prefix' => 'admin'], function () {
   Route::get('/', [App\Http\Controllers\Admin\Auth\LoginController::class, 'showLoginForm'])->name('admin.login');

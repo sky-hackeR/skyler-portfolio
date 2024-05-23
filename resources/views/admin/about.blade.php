@@ -82,7 +82,7 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between">
                     <h5 class="card-title mb-4">Current About Title and Statement</h5>
-                    <button class="btn btn-outline-success edit" title="Edit" data-about-title="{{ $about->title }}" data-about-content="{!! !empty($about) ? htmlspecialchars($about->about) : '' !!}">
+                    <button class="btn btn-outline-success edit" title="Edit" data-about-title="{!! !empty($about) ? ($about->title) : '' !!}" data-about-content="{!! !empty($about) ? htmlspecialchars($about->about) : '' !!}">
                         <i class="fas fa-pencil-alt"></i>
                     </button>
                 </div>
