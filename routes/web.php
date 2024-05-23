@@ -18,6 +18,7 @@ Route::get('/contact', [App\Http\Controllers\PageController::class, 'contact'])-
 Route::get('/credentials', [App\Http\Controllers\PageController::class, 'credentials'])->name('credentials');
 Route::get('/project', [App\Http\Controllers\PageController::class, 'project'])->name('project');
 Route::get('/services', [App\Http\Controllers\PageController::class, 'services'])->name('services');
+Route::get('/coming', [App\Http\Controllers\PageController::class, 'coming'])->name('coming');
 
 Route::group(['prefix' => 'admin'], function () {
   Route::get('/', [App\Http\Controllers\Admin\Auth\LoginController::class, 'showLoginForm'])->name('admin.login');

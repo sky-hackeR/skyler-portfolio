@@ -41,14 +41,14 @@
                         <div class="form-floating mb-3">
                             <select class="form-select" name="icon" id="icon" aria-label="Select Social Media Icon">
                                 <option value="" selected>Select Social Media Icon</option>
-                                <option value="fa-facebook-f">Facebook Icon</option>
-                                <option value="fa-instagram">Instagram Icon</option>
-                                <option value="fa-twitter">Twitter Icon</option>
-                                <option value="fa-youtube">Youtube Icon</option>
-                                <option value="fa-whatsapp">Whatsapp Icon</option>
-                                <option value="fa-linkedin">Linkedin Icon</option>
-                                <option value="fa-envelope">Email Icon</option>
-                                <option value="fa-github">Github Icon</option>
+                                <option value="iconoir-facebook">Facebook Icon</option>
+                                <option value="iconoir-instagram">Instagram Icon</option>
+                                <option value="iconoir-twitter">Twitter Icon</option>
+                                <option value="iconoir-youtube">Youtube Icon</option>
+                                <option value="iconoir-whatsapp">Whatsapp Icon</option>
+                                <option value="iconoir-linkedin">Linkedin Icon</option>
+                                <option value="iconoir-mail">Email Icon</option>
+                                <option value="iconoir-github">Github Icon</option>
                             </select>
                             <label for="icon">Select Social Media Icon</label>
                         </div>
@@ -145,13 +145,14 @@
                                                             <div class="col-md-12">
                                                                 <div class="form-floating mb-3">
                                                                     <select class="form-select" name="icon" id="icon" aria-label="Select Social Media Icon">
-                                                                        <option value="fa-facebook-f" @if($social->icon == 'fa-facebook-f') selected @endif>Facebook Icon</option>
-                                                                        <option value="fa-instagram" @if($social->icon == 'fa-instagram') selected @endif>Instagram Icon</option>
-                                                                        <option value="fa-twitter" @if($social->icon == 'fa-twitter') selected @endif>Twitter Icon</option>
-                                                                        <option value="fa-youtube" @if($social->icon == 'fa-youtube') selected @endif>Youtube Icon</option>
-                                                                        <option value="fa-whatsapp" @if($social->icon == 'fa-whatsapp') selected @endif>Whatsapp Icon</option>
-                                                                        <option value="fa-linkedin" @if($social->icon == 'fa-linkedin') selected @endif>Linkedin Icon</option>
-                                                                        <option value="fa-envelope" @if($social->icon == 'fa-envelope') selected @endif>Email Icon</option>                                                                        
+                                                                        <option value="iconoir-facebook" @if($social->icon == 'iconoir-facebook') selected @endif>Facebook Icon</option>
+                                                                        <option value="iconoir-instagram" @if($social->icon == 'iconoir-instagram') selected @endif>Instagram Icon</option>
+                                                                        <option value="iconoir-twitter" @if($social->icon == 'iconoir-twitter') selected @endif>Twitter Icon</option>
+                                                                        <option value="iconoir-youtube" @if($social->icon == 'iconoir-youtube') selected @endif>Youtube Icon</option>
+                                                                        <option value="iconoir-whatsapp" @if($social->icon == 'iconoir-whatsapp') selected @endif>Whatsapp Icon</option>
+                                                                        <option value="iconoir-linkedin" @if($social->icon == 'iconoir-linkedin') selected @endif>Linkedin Icon</option>
+                                                                        <option value="iconoir-mail" @if($social->icon == 'iconoir-mail') selected @endif>Email Icon</option>                                                                       
+                                                                        <option value="iconoir-github" @if($social->icon == 'iconoir-github') selected @endif>Github Icon</option>                                                                         
                                                                     </select>
                                                                     <label for="icon">Select Social Media Icon</label>
                                                                 </div>

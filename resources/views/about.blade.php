@@ -9,18 +9,18 @@
         <div class="d-flex about-me-wrap align-items-start gap-24">
             <div data-aos="zoom-in">
                 <div class="about-image-box shadow-box">
-                    <img src="assets/images/bg1.png" alt="BG" class="bg-img">
+                    <img src="{{ asset('frontAssets/images/bg1.png') }}" alt="BG" class="bg-img">
                     <div class="image-inner">
-                        <img src="assets/images/me2.png" alt="About Me">
+                        <img src="{{ !empty($pageGlobalData->setting) ? $pageGlobalData->setting->image : "" }}" alt="About Me">
                     </div>
                 </div>
             </div>
 
             <div class="about-details" data-aos="zoom-in">
-                <h1 class="section-heading" data-aos="fade-up"><img src="assets/images/star-2.png" alt="Star"> Self-summary <img src="assets/images/star-2.png" alt="Star"></h1>
+                <h1 class="section-heading" data-aos="fade-up"><img src="{{ asset('frontAssets/images/star-2.png') }}" alt="Star"> Self-summary <img src="{{ asset('frontAssets/images/star-2.png') }}" alt="Star"></h1>
                 <div class="about-details-inner shadow-box">
-                    <img src="assets/images/icon2.png" alt="Star">
-                    <h1>David Henderson</h1>
+                    <img src="{{ asset('frontAssets/images/icon2.png') }}" alt="Star">
+                    <h1>{{ !empty($pageGlobalData->setting) ? $pageGlobalData->setting->username : "" }}</h1>
                     <p>I am a San francisco-based product designer with a focus on web design, illustration, a visual development. I have a diverse range of experience having worked across various fields and industries.</p>
                 </div>
 
@@ -30,7 +30,7 @@
         <div class="row mt-24">
             <div class="col-md-6" data-aos="zoom-in">
                 <div class="about-edc-exp about-experience shadow-box">
-                    <img src="assets/images/bg1.png" alt="BG" class="bg-img">
+                    <img src="{{ asset('frontAssets/images/bg1.png') }}" alt="BG" class="bg-img">
                     <h3>EXPERIENCE</h3>
 
                     <ul>

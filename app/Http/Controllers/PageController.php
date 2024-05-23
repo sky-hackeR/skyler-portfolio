@@ -36,8 +36,10 @@ class PageController extends Controller
     //
 
     public function welcome() {
-
-        return view('welcome');
+        $counter = Counter::all();
+        return view('welcome',[
+            'counter' => $counter
+        ]);
     }
 
     public function about() {
@@ -46,8 +48,12 @@ class PageController extends Controller
     }
 
     public function contact() {
-        
-        return view('contact');
+        $socials = Social::all();
+        $contacts = ContactInfo::all();
+        return view('contact',[
+            'socials' => $socials,
+            'contacts' =>$contacts
+        ]);
     }
 
     public function credentials() {
@@ -63,5 +69,10 @@ class PageController extends Controller
     public function services() {
         
         return view('services');
+    }
+
+    public function coming() {
+        
+        return view('coming');
     }
 }

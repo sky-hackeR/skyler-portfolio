@@ -30,21 +30,21 @@
         <header class="header-area">
             <div class="container">
                 <div class="gx-row d-flex align-items-center justify-content-between">
-                    <a href="index.html" class="logo">
-                        <img src="{{ asset('frontAssets/images/logo.svg') }}" alt="Logo">
+                    <a href="{{ url('/') }}" class="logo">
+                        <img src="{{ !empty($pageGlobalData->setting) ? $pageGlobalData->setting->logo_top : "" }}" alt="Logo" height="40">
                     </a>
 
                     <nav class="navbar">
                         <ul class="menu">
-                            <li class="active"><a href="index.html">Home</a></li>
-                            <li><a href="about.html">About</a></li>
-                            <li><a href="works.html">Works</a></li>
-                            <li><a href="contact.html">Contact</a></li>
+                            <li class="active"><a href="{{ url('/') }}">Home</a></li>
+                            <li><a href="{{ url('/about') }}">About</a></li>
+                            <li><a href="{{ url('/project') }}">Projects</a></li>
+                            <li><a href="{{ url('/contact') }}">Contact</a></li>
                         </ul>
-                        <a href="contact.html" class="theme-btn">Let's talk</a>
+                        <a href="{{ url('/contact') }}" class="theme-btn">Let's talk</a>
                     </nav>
 
-                    <a href="contact.html" class="theme-btn">Let's talk</a>
+                    <a href="{{ url('/contact') }}" class="theme-btn">Let's talk</a>
 
                     <div class="show-menu">
                         <span></span>
@@ -62,16 +62,16 @@
             <div class="container">
                 <div class="footer-content text-center">
                     <a href="index.html" class="logo">
-                        <img src="{{ asset('frontAssets/images/logo.svg') }}" alt="Logo">
+                        <img src="{{ !empty($pageGlobalData->setting) ? $pageGlobalData->setting->logo_top : "" }}" alt="Logo" height="40">
                     </a>
                     <ul class="footer-menu">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="works.html">Works</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="{{ url('/') }}">Home</a></li>
+                        <li><a href="{{ url('/about') }}">About</a></li>
+                        <li><a href="{{ url('/project') }}">Projects</a></li>
+                        <li><a href="{{ url('/contact') }}">Contact</a></li>
                     </ul>
                     <p class="copyright">
-                        &copy; All rights reserved by <span>WordPress River</span>
+                        &copy; All rights reserved by <span>{{ env('APP_AUTHOR') }}</span>
                     </p>
                 </div>
             </div>
