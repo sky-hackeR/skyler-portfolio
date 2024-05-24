@@ -1077,7 +1077,7 @@ class AdminController extends Controller
 
     public function deleteProjectImage(Request $request) {
         $validator = Validator::make($request->all(), [
-            'social_id' => 'required',
+            'project_id' => 'required',
         ]);
 
         if($validator->fails()) {
@@ -1085,13 +1085,13 @@ class AdminController extends Controller
             return redirect()->back();
         }
 
-        if(!$social = ProjectImage::find($request->social_id)){
+        if(!$social = ProjectImage::find($request->project_id)){
             alert()->error('Oops', 'Invalid Social Link')->persistent('Close');
             return redirect()->back();
         }
 
         if($social->delete()){
-            alert()->success('Changes Saved', 'Social link deleted successfully')->persistent('Close');
+            alert()->success('Changes Saved', 'Project Image deleted successfully')->persistent('Close');
             return redirect()->back();
         }
 

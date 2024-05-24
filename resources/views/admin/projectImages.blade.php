@@ -55,60 +55,70 @@
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title mb-4">Project Images List</h5>
-                <div class="table-responsive">
-                    <table class="table table-nowrap align-middle mb-0">
-                        <tbody>
-                            @foreach($images as $image)
-                            <tr> 
-                                <td>
-                                    <h5 class="text-truncate font-size-14 m-0">
-                                        <a href="javascript: void(0);" class="text-dark">{{ $image->project->title }}</a>
-                                    </h5>
-                                </td>
-                                <td>
-                                    <img src="{{ asset($image->image) }}" alt="Project Image" class="img-thumbnail" width="100">
-                                </td>
-                                <td>
-                                    <div class="text-end">
-
-                                        <a class="btn btn-outline-danger btn-sm edit" title="delete" data-bs-toggle="modal" data-bs-target="#deleteImage{{ $image->id }}">
-                                            <i class="fas fa-trash"></i>
-                                        </a>
-
-                                        <!-- Static Backdrop Modal for Delete -->
-                                        <div class="modal fade" id="deleteImage{{ $image->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="deleteImage" aria-hidden="true">
-                                            <div class="modal-dialog modal-md modal-dialog-centered" role="document">
-                                                <div class="modal-content">
-                                                
-                                                    <form action="{{ url('/admin/deleteProjectImage') }}" method="POST">
-                                                        @csrf
-                                                        <input type="hidden" name="image_id" value="{{ $image->id }}">
-                                                        <div class="modal-body">
-                                                            <p class="text-center"> Are you sure you want to delete this image?</p>
-                                                        </div>
-                                                        
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
-                                                            <button type="submit" class="btn btn-danger">Yes, Delete</button>
-                                                        </div>
-                                                    </form>
-                                                    
-                                                </div>
-                                            </div>
-                                        </div>
-
+                @foreach($images->groupBy('project_id') as $projectId => $projectImages)
+                    <div class="accordion mb-3" id="accordion{{$projectId}}">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                @foreach($projectImages->take(1) as $image)
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{$projectId}}" aria-expanded="true" aria-controls="collapse{{$projectId}}">
+                                        {{-- Project ID: {{$projectId}} --}}
+                                        {{ $image->project->title }}
+                                    </button>
+                                @endforeach
+                            </h2>
+                            <div id="collapse{{$projectId}}" class="accordion-collapse collapse" aria-labelledby="heading{{$projectId}}" data-bs-parent="#accordion{{$projectId}}">
+                                <div class="accordion-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-nowrap align-middle mb-0">
+                                            <tbody>
+                                                @foreach($projectImages as $image)
+                                                    <tr> 
+                                                        <td>
+                                                            <h5 class="text-truncate font-size-14 m-0">
+                                                                <a href="javascript: void(0);" class="text-dark">{{ $image->project->title }}</a>
+                                                            </h5>
+                                                        </td>
+                                                        <td>
+                                                            <img src="{{ asset($image->image) }}" alt="Project Image" class="img-thumbnail" width="100">
+                                                        </td>
+                                                        <td>
+                                                            <div class="text-end">
+                                                                <a class="btn btn-outline-danger btn-sm edit" title="delete" data-bs-toggle="modal" data-bs-target="#deleteImage{{ $image->id }}">
+                                                                    <i class="fas fa-trash"></i>
+                                                                </a>
+    
+                                                                <!-- Static Backdrop Modal for Delete -->
+                                                                <div class="modal fade" id="deleteImage{{ $image->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="deleteImage" aria-hidden="true">
+                                                                    <div class="modal-dialog modal-md modal-dialog-centered" role="document">
+                                                                        <div class="modal-content">
+                                                                            <form action="{{ url('/admin/deleteProjectImage') }}" method="POST">
+                                                                                @csrf
+                                                                                <input type="hidden" name="project_id" value="{{ $image->id }}">
+                                                                                <div class="modal-body">
+                                                                                    <p class="text-center"> Are you sure you want to delete this image?</p>
+                                                                                </div>
+                                                                                <div class="modal-footer">
+                                                                                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                                                                                    <button type="submit" class="btn btn-danger">Yes, Delete</button>
+                                                                                </div>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
                                     </div>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-                
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
             </div>
-            <!-- end card body -->
         </div>
-        <!-- end card -->
     </div>
     <!-- end col -->
 </div>
