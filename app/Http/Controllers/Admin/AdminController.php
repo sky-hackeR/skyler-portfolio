@@ -830,7 +830,6 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
-
     public function updateCounter(Request $request){
         $validator = Validator::make($request->all(), [
             'year' => 'required',
@@ -1038,7 +1037,6 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
-
     public function addProjectImage(Request $request) {
         $validator = Validator::make($request->all(), [
             'project_id' => 'required',
@@ -1072,8 +1070,6 @@ class AdminController extends Controller
         alert()->error('Oops!', 'Something went wrong')->persistent('Close');
         return redirect()->back();
     }
-
-
 
     public function deleteProjectImage(Request $request) {
         $validator = Validator::make($request->all(), [
