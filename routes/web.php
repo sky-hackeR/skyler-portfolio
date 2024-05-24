@@ -56,6 +56,10 @@ Route::group(['prefix' => 'admin'], function () {
   Route::post('/editProject', [App\Http\Controllers\Admin\AdminController::class, 'editProject'])->name('editProject')->middleware(['auth:admin']);
   Route::post('/deleteProject', [App\Http\Controllers\Admin\AdminController::class, 'deleteProject'])->name('deleteProject')->middleware(['auth:admin']);
 
+  Route::get('/projectImage', [App\Http\Controllers\Admin\AdminController::class, 'projectImage'])->name('projectImage')->middleware(['auth:admin']);
+  Route::post('/addProjectImage', [App\Http\Controllers\Admin\AdminController::class, 'addProjectImage'])->name('addProjectImage')->middleware(['auth:admin']);
+  Route::post('/deleteProjectImage', [App\Http\Controllers\Admin\AdminController::class, 'deleteProjectImage'])->name('deleteProjectImage')->middleware(['auth:admin']);
+
   Route::get('/contacts', [App\Http\Controllers\Admin\AdminController::class, 'contacts'])->name('contacts')->middleware(['auth:admin']);
   Route::post('/addContactInfo', [App\Http\Controllers\Admin\AdminController::class, 'addContactInfo'])->name('addContactInfo')->middleware(['auth:admin']);
   Route::post('/editContactInfo', [App\Http\Controllers\Admin\AdminController::class, 'editContactInfo'])->name('editContactInfo')->middleware(['auth:admin']);

@@ -81,6 +81,15 @@ class AdminController extends Controller
         ]);
     }
 
+    public function projectImage(){
+        $projects = Project::all();
+        $images = ProjectImage::all();
+        return view('admin.projectImages', [
+            'projects' => $projects,
+            'images' => $images
+        ]);
+    }
+
     public function contacts(){
         $contacts = ContactInfo::get();
         return view('admin.contacts', [
@@ -718,7 +727,7 @@ class AdminController extends Controller
         ]);
 
         if(Project::create($newProject)){
-            alert()->success('Changes Saved', 'Experience added successfully')->persistent('Close');
+            alert()->success('Changes Saved', 'Project added successfully')->persistent('Close');
             return redirect()->back();
         }
 
@@ -1029,4 +1038,64 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
+
+    public function addProjectImage(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'project_id' => 'required',
+            'image' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            alert()->error('Error', $validator->messages()->all()[0])->persistent('Close');
+            return redirect()->back();
+        }
+
+        if (!Project::find($request->project_id)) {
+            alert()->error('Oops', 'Invalid Project')->persistent('Close');
+            return redirect()->back();
+        }
+
+        if ($request->hasFile('image')) {
+            $imagePath = cloudinary()->uploadFile($request->file('image')->getRealPath())->getSecurePath();
+        }
+
+        $newProjectImage = [
+            'project_id' => $request->project_id,
+            'image' => $imagePath,
+        ];
+
+        if (ProjectImage::create($newProjectImage)) {
+            alert()->success('Image Added', 'Project image added successfully')->persistent('Close');
+            return redirect()->back();
+        }
+
+        alert()->error('Oops!', 'Something went wrong')->persistent('Close');
+        return redirect()->back();
+    }
+
+
+
+    public function deleteProjectImage(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'social_id' => 'required',
+        ]);
+
+        if($validator->fails()) {
+            alert()->error('Error', $validator->messages()->all()[0])->persistent('Close');
+            return redirect()->back();
+        }
+
+        if(!$social = ProjectImage::find($request->social_id)){
+            alert()->error('Oops', 'Invalid Social Link')->persistent('Close');
+            return redirect()->back();
+        }
+
+        if($social->delete()){
+            alert()->success('Changes Saved', 'Social link deleted successfully')->persistent('Close');
+            return redirect()->back();
+        }
+
+        alert()->error('Oops!', 'Something went wrong')->persistent('Close');
+        return redirect()->back();
+    }
 }

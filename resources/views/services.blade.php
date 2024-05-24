@@ -12,7 +12,7 @@
             <!-- Sidebar -->
             <div class="col-md-4">
                 <div class="service-sidebar" data-aos="fade-right">
-                    @foreach($service as $item) 
+                    @foreach($service->take(4) as $item) 
                         <div class="service-sidebar-inner shadow-box">
                             <ul>
                                 <li>

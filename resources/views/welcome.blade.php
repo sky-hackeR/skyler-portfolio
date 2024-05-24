@@ -124,12 +124,11 @@
                         <div class="about-services-box info-box shadow-box h-full">
                             <a href="{{ url('/services') }}" class="overlay-link"></a>
                             <img src="{{ asset('frontAssets/images/bg1.png') }}" alt="BG" class="bg-img">
-                            <div class="icon-boxes">
-                                <i class="iconoir-code"></i>
-                                <i class="iconoir-design-pencil"></i>
-                                <i class="iconoir-color-filter"></i>
-                                <i class="iconoir-camera"></i>
-                            </div>
+                            @foreach($service as $item)
+                                <div class="icon-boxes">
+                                    <i class="{{ $item->icon }} icon"></i>
+                                </div>
+                            @endforeach
                             <div class="d-flex align-items-center justify-content-between">
                                 <div class="infos">
                                     <h4>specialization</h4>

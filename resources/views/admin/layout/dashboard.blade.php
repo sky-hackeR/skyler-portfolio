@@ -172,8 +172,8 @@
                                 </a>
                                 <ul class="sub-menu" aria-expanded="false">
                                     <li><a href="{{ url('/admin/projects') }}" key="t-saas">Add New Project</a></li>
+                                    <li><a href="{{ url('/admin/projectImage') }}" key="t-saas">Add Project Images</a></li>
                                     <li><a href="{{ url('/admin/allProjects') }}" key="t-saas">All Projects</a></li>
-
                                 </ul>
                             </li>
 

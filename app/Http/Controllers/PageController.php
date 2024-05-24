@@ -39,10 +39,12 @@ class PageController extends Controller
         $about= About::get();
         $counter = Counter::all();
         $socials = Social::all();
+        $service = Service::all();
         return view('welcome',[
             'about' => $about,
             'counter' => $counter,
-            'socials' => $socials
+            'socials' => $socials,
+            'service' => $service, 
         ]);
     }
 
@@ -86,8 +88,10 @@ class PageController extends Controller
     }
 
     public function project() {
-        
-        return view('project');
+        $projects = Project::with('images')->get();
+        return view('project',[
+            'projects' => $projects,
+        ]);
     }
 
     public function services() {

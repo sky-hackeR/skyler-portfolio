@@ -72,10 +72,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-floating mb-3">
-                        <input type="file" class="form-control" id="floatingImageInput" name="image[]" multiple>
-                        <label for="floatingImageInput">Image</label>
-                    </div>
                     <br>
                     <div class="mb-3">
                         <label for="descriptionInput" class="form-label">Description</label>
