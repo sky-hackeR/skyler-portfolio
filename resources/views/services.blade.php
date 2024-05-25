@@ -12,17 +12,16 @@
             <!-- Sidebar -->
             <div class="col-md-4">
                 <div class="service-sidebar" data-aos="fade-right">
-                    @foreach($service->take(4) as $item) 
-                        <div class="service-sidebar-inner shadow-box">
-                            <ul>
+                    <div class="service-sidebar-inner shadow-box">
+                        <ul>
+                            @foreach($service as $item) 
                                 <li>
                                     <i class="{{ $item->icon }} icon"></i>
                                     {{ $item->title }}
                                 </li>
-                            </ul>
-                        </div>
-                    @endforeach
-
+                            @endforeach
+                        </ul>
+                    </div>
                 </div>
             </div>
 

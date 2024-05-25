@@ -124,25 +124,25 @@
                         <div class="about-services-box info-box shadow-box h-full">
                             <a href="{{ url('/services') }}" class="overlay-link"></a>
                             <img src="{{ asset('frontAssets/images/bg1.png') }}" alt="BG" class="bg-img">
-                            @foreach($service as $item)
-                                <div class="icon-boxes">
-                                    <i class="{{ $item->icon }} icon"></i>
-                                </div>
-                            @endforeach
+                            <div class="icon-boxes d-flex align-items-center justify-content-center"> <!-- Add this class -->
+                                @foreach($service as $item)
+                                    <div class="icon-box"> <!-- Wrap each icon in a div with this class -->
+                                        <i class="{{ $item->icon }} icon"></i>
+                                    </div>
+                                @endforeach
+                            </div>
                             <div class="d-flex align-items-center justify-content-between">
                                 <div class="infos">
                                     <h4>specialization</h4>
                                     <h1>Services Offering</h1>
                                 </div>
-
                                 <a href="{{ url('/services') }}" class="about-btn">
                                     <img src="{{ asset('frontAssets/images/icon.svg') }}" alt="Button">
                                 </a>
-
                             </div>
                         </div>
                     </div>
-
+                    
                     <div data-aos="zoom-in">
                         <div class="about-profile-box info-box shadow-box h-full">
                             <img src="{{ asset('frontAssets/images/bg1.png') }}" alt="BG" class="bg-img">

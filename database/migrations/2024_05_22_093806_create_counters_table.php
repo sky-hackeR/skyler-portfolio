@@ -15,7 +15,7 @@ class CreateCountersTable extends Migration
     {
         Schema::create('counters', function (Blueprint $table) {
             $table->id();
-            $table->year('year')->nullable();
+            $table->string('year')->nullable();
             $table->string('clients')->nullable();
             $table->string('projects')->nullable();
             $table->timestamps();
