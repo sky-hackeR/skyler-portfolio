@@ -2,6 +2,104 @@
 
 @section('content')
 
+<section class="project-details-wrap">
+    <div class="project-details-img" data-aos="zoom-in">
+        @if ($project->images->isNotEmpty())
+            <img src="{{ asset($project->images->first()->image) }}" alt="{{ $project->title }}">
+        @else
+            <img src="{{ asset('frontAssets/images/default-image.jpg') }}" alt="Default Image">
+        @endif
+    </div>
 
+    <div class="container">
+        <div data-aos="zoom-in">
+            <div class="d-flex project-infos-wrap shadow-box mb-24">
+                <img src="{{ asset('frontAssets/images/bg1.png') }}" alt="BG" class="bg-img">
+                <img src="{{ asset('frontAssets/images/icon2.png') }}" alt="Icon">
+                <div class="project-details-info flex-1">
+                    <h3>{{ $project->title }}</h3>
+                    <p>{{ $project->description }}</p>
+                </div>
+
+                <div class="project-details-info flex-1">
+                    <h3>About</h3>
+                    <p>{{ $project->about }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="project-details-2-img mb-24" data-aos="zoom-in">
+            @if ($project->images->isNotEmpty())
+                <img src="{{ asset($project->images->first()->image) }}" alt="{{ $project->title }}">
+            @else
+                <img src="{{ asset('frontAssets/images/default-image.jpg') }}" alt="Default Image">
+            @endif
+        </div>
+
+        <div class="row mb-24">
+            @forelse ($project->images as $image)
+                <div class="col-md-6" data-aos="zoom-in">
+                    <div class="project-details-3-img">
+                        <img src="{{ asset($image->image) }}" alt="Project Image">
+                    </div>
+                </div>
+            @empty
+                <div class="col-md-6" data-aos="zoom-in">
+                    <div class="project-details-3-img">
+                        <img src="{{ asset('frontAssets/images/default-image.jpg') }}" alt="Default Image">
+                    </div>
+                </div>
+            @endforelse
+        </div>
+
+        <div data-aos="zoom-in">
+            <div class="project-about-2 d-flex shadow-box mb-24">
+                <img src="{{ asset('frontAssets/images/bg1.png') }}" alt="BG" class="bg-img">
+                <div class="left-details">
+                    <img src="{{ asset('frontAssets/images/icon3.png') }}" alt="Icon">
+                    <ul>
+                        <li>
+                            <p>Year</p>
+                            <h4>{{ $project->year }}</h4>
+                        </li>
+                        <li>
+                            <p>Client</p>
+                            <h4>{{ $project->client }}</h4>
+                        </li>
+                        <li>
+                            <p>Services</p>
+                            <h4>{{ $project->services }}</h4>
+                        </li>
+                        <li>
+                            <p>Project</p>
+                            <h4>{{ $project->project_type }}</h4>
+                        </li>
+                    </ul>
+                </div>
+                <div class="right-details">
+                    <h3>Description</h3>
+                    <p>{!! $project->description !!}</p>
+                    <p>{!! $project->about_project !!}</p>
+                    <p>{!! $project->about_client !!}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="project-details-img" data-aos="zoom-in">
+        @if ($project->images->isNotEmpty())
+            <img src="{{ asset($project->images->first()->image) }}" alt="{{ $project->title }}">
+        @else
+            <img src="{{ asset('frontAssets/images/default-image.jpg') }}" alt="Default Image">
+        @endif
+    </div>
+
+    <div class="container d-flex align-items-center justify-content-center" data-aos="zoom-in">
+        <a href="#" class="big-btn shadow-box">
+            Next Project
+        </a>
+    </div>
+    
+</section>
 
 @endsection

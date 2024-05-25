@@ -19,6 +19,7 @@ class Project extends Model
         'description',
         'about_project',
         'about_client',
+        'slug'
     ];
 
     public function images(){

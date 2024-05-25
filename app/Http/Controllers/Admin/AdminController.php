@@ -714,6 +714,7 @@ class AdminController extends Controller
             alert()->error('Error', $validator->messages()->all()[0])->persistent('Close');
             return redirect()->back();
         }
+        $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $request->client.'-'.$request->title)));
 
         $newProject = ([
             'title' => $request->title,
@@ -724,6 +725,7 @@ class AdminController extends Controller
             'description' => $request->description,
             'about_project' => $request->about_project,
             'about_client' => $request->about_client,
+            'slug' => $slug
         ]);
 
         if(Project::create($newProject)){
@@ -784,6 +786,14 @@ class AdminController extends Controller
         if (!$project = Project::find($request->project_id)) {
             alert()->error('Oops', 'Invalid Project')->persistent('Close');
             return redirect()->back();
+        }
+
+        $slug = $project->slug;
+        if(!empty($request->client) && $request->client != $project->client ){
+            $project->client = $request->client;
+            $project->title = $request->title;
+            $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $request->client.'-'.$request->title)));
+            $project->slug = $slug;
         }
 
         // Update project details conditionally

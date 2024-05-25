@@ -19,6 +19,7 @@ Route::get('/credentials', [App\Http\Controllers\PageController::class, 'credent
 Route::get('/project', [App\Http\Controllers\PageController::class, 'project'])->name('project');
 Route::get('/services', [App\Http\Controllers\PageController::class, 'services'])->name('services');
 Route::get('/coming', [App\Http\Controllers\PageController::class, 'coming'])->name('coming');
+Route::get('/viewProject/{slug}', [App\Http\Controllers\PageController::class, 'viewProject'])->name('viewProject');
 
 Route::group(['prefix' => 'admin'], function () {
   Route::get('/', [App\Http\Controllers\Admin\Auth\LoginController::class, 'showLoginForm'])->name('admin.login');

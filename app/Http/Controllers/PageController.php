@@ -107,4 +107,11 @@ class PageController extends Controller
         
         return view('coming');
     }
+
+    public function viewProject($slug){
+        $project = Project::with('images')->where('slug', $slug)->firstOrFail();
+        return view('viewProject', [
+            'project' => $project,
+        ]);
+    }
 }

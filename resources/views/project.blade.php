@@ -163,7 +163,7 @@
                     @foreach ($projects->slice(0, 2) as $project)
                         <div data-aos="zoom-in">
                             <div class="project-item shadow-box">
-                                <a class="overlay-link" href=""></a>
+                                <a class="overlay-link" href="{{ route('viewProject', ['slug' => $project->slug]) }}"></a>
                                 <img src="{{ asset('frontAssets/images/bg1.png') }}" alt="BG" class="bg-img">
                                 <div class="project-img">
                                     @foreach ($project->images->take(1) as $image)
@@ -175,7 +175,7 @@
                                         <p>{{ $project->services }}</p>
                                         <h1>{{ $project->title }}</h1>
                                     </div>
-                                    <a href="" class="project-btn">
+                                    <a href="{{ route('viewProject', ['slug' => $project->slug]) }}" class="project-btn">
                                         <img src="{{ asset('frontAssets/images/icon.svg') }}" alt="Button">
                                     </a>
                                 </div>
@@ -193,7 +193,7 @@
                             @foreach ($chunk as $project)
                                 <div data-aos="zoom-in" class="flex-1">
                                     <div class="project-item shadow-box">
-                                        <a class="overlay-link" href=""></a>
+                                        <a class="overlay-link" href="{{ route('viewProject', ['slug' => $project->slug]) }}"></a>
                                         <img src="{{ asset('frontAssets/images/bg1.png') }}" alt="BG" class="bg-img">
                                         <div class="project-img">
                                             @foreach ($project->images->take(1) as $image)
@@ -205,7 +205,7 @@
                                                 <p>{{ $project->services }}</p>
                                                 <h1>{{ $project->title }}</h1>
                                             </div>
-                                            <a href="" class="project-btn">
+                                            <a href="{{ route('viewProject', ['slug' => $project->slug]) }}" class="project-btn">
                                                 <img src="{{ asset('frontAssets/images/icon.svg') }}" alt="Button">
                                             </a>
                                         </div>
@@ -220,7 +220,7 @@
                     <div class="col-md-6">
                         <div class="d-flex align-items-start gap-24">
                             <div class="project-item shadow-box">
-                                <a class="overlay-link" href=""></a>
+                                <a class="overlay-link" href="{{ route('viewProject', ['slug' => $project->slug]) }}"></a>
                                 <img src="{{ asset('frontAssets/images/bg1.png') }}" alt="BG" class="bg-img">
                                 <div class="project-img">
                                     @foreach ($project->images->take(1) as $image)
@@ -232,7 +232,7 @@
                                         <p>{{ $project->services }}</p>
                                         <h1>{{ $project->title }}</h1>
                                     </div>
-                                    <a href="" class="project-btn">
+                                    <a href="{{ route('viewProject', ['slug' => $project->slug]) }}" class="project-btn">
                                         <img src="{{ asset('frontAssets/images/icon.svg') }}" alt="Button">
                                     </a>
                                 </div>
