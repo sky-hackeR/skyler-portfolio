@@ -166,9 +166,9 @@
                                 <a class="overlay-link" href="{{ route('viewProject', ['slug' => $project->slug]) }}"></a>
                                 <img src="{{ asset('frontAssets/images/bg1.png') }}" alt="BG" class="bg-img">
                                 <div class="project-img">
-                                    @foreach ($project->images->take(1) as $image)
-                                        <img src="{{ asset($image->image) }}" alt="Project Image">
-                                    @endforeach
+                                    @if (isset($project->images[1]))
+                                        <img src="{{ asset($project->images[1]->image) }}" alt="Project Image">
+                                    @endif
                                 </div>
                                 <div class="d-flex align-items-center justify-content-between">
                                     <div class="project-info">
@@ -196,9 +196,9 @@
                                         <a class="overlay-link" href="{{ route('viewProject', ['slug' => $project->slug]) }}"></a>
                                         <img src="{{ asset('frontAssets/images/bg1.png') }}" alt="BG" class="bg-img">
                                         <div class="project-img">
-                                            @foreach ($project->images->take(1) as $image)
-                                                <img src="{{ asset($image->image) }}" alt="Project Image">
-                                            @endforeach
+                                            @if (isset($project->images[1]))
+                                                <img src="{{ asset($project->images[1]->image) }}" alt="Project Image">
+                                            @endif
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between">
                                             <div class="project-info">
@@ -223,9 +223,9 @@
                                 <a class="overlay-link" href="{{ route('viewProject', ['slug' => $project->slug]) }}"></a>
                                 <img src="{{ asset('frontAssets/images/bg1.png') }}" alt="BG" class="bg-img">
                                 <div class="project-img">
-                                    @foreach ($project->images->take(1) as $image)
-                                        <img src="{{ asset($image->image) }}" alt="Project Image">
-                                    @endforeach
+                                    @if (isset($project->images[1]))
+                                        <img src="{{ asset($project->images[1]->image) }}" alt="Project Image">
+                                    @endif
                                 </div>
                                 <div class="d-flex align-items-center justify-content-between">
                                     <div class="project-info">

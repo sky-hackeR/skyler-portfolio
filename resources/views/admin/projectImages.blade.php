@@ -38,8 +38,9 @@
                     <div class="form-floating mb-3">
                         <input type="file" class="form-control" id="image" name="image" required>
                         <label for="image">Image</label>
-                    </div>
+                        <p><b>NB: </b>The first picture should be in this dimension (1920 x 551)</p>
 
+                    </div>
                     <div>
                         <button type="submit" class="btn btn-primary w-md float-end">Save</button>
                     </div>
@@ -61,7 +62,6 @@
                             <h2 class="accordion-header">
                                 @foreach($projectImages->take(1) as $image)
                                     <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{$projectId}}" aria-expanded="true" aria-controls="collapse{{$projectId}}">
-                                        {{-- Project ID: {{$projectId}} --}}
                                         {{ $image->project->title }}
                                     </button>
                                 @endforeach

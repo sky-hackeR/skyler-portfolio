@@ -2,6 +2,26 @@
 
 @section('content')
 
+<style>
+    .breadcrumb-text {
+        text-transform: uppercase;
+    }
+</style>
+
+<!-- Breadcrumb -->
+<section class="breadcrumb-area">
+    <div class="container">
+        <div class="breadcrumb-content" data-aos="fade-up">
+            <p class="breadcrumb-text">{{ $project->services }} - {{ $project->client }}</p>
+            <h1 class="section-heading">
+                <img src="{{ asset('frontAssets/images/star-2.png') }}" alt="Star"> 
+                {{ $project->title }} 
+                <img src="{{ asset('frontAssets/images/star-2.png') }}" alt="Star">
+            </h1>
+        </div>
+    </div>
+</section>
+
 <section class="project-details-wrap">
     <div class="project-details-img" data-aos="zoom-in">
         @if ($project->images->isNotEmpty())
@@ -17,13 +37,13 @@
                 <img src="{{ asset('frontAssets/images/bg1.png') }}" alt="BG" class="bg-img">
                 <img src="{{ asset('frontAssets/images/icon2.png') }}" alt="Icon">
                 <div class="project-details-info flex-1">
-                    <h3>{{ $project->title }}</h3>
-                    <p>{{ $project->description }}</p>
+                    <h3>{{ $project->client }}</h3>
+                    <p>{!! $project->about_client !!}</p>
                 </div>
 
                 <div class="project-details-info flex-1">
                     <h3>About</h3>
-                    <p>{{ $project->about }}</p>
+                    <p>{!! $project->about_project !!}</p>
                 </div>
             </div>
         </div>
@@ -37,7 +57,7 @@
         </div>
 
         <div class="row mb-24">
-            @forelse ($project->images as $image)
+            @forelse ($project->images->slice(1) as $image)
                 <div class="col-md-6" data-aos="zoom-in">
                     <div class="project-details-3-img">
                         <img src="{{ asset($image->image) }}" alt="Project Image">
@@ -79,8 +99,6 @@
                 <div class="right-details">
                     <h3>Description</h3>
                     <p>{!! $project->description !!}</p>
-                    <p>{!! $project->about_project !!}</p>
-                    <p>{!! $project->about_client !!}</p>
                 </div>
             </div>
         </div>
