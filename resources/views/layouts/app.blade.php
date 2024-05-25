@@ -18,6 +18,30 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 
+    <!-- Custom Scrollbar Styles -->
+    <style>
+        /* For WebKit browsers (Chrome, Safari, etc.) */
+        ::-webkit-scrollbar {
+            width: 4px; /* Adjust the width as needed */
+            height: 4px; /* Adjust the height as needed */
+        }
+    
+        ::-webkit-scrollbar-track {
+            background: transparent; /* Transparent background for the track */
+        }
+    
+        ::-webkit-scrollbar-thumb {
+            background: #2b2a2a; /* Grey scrollbar thumb */
+            border-radius: 10px; /* Round the corners of the scrollbar thumb */
+        }
+    
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555; /* Dark grey when hovering */
+        }
+    </style>
+    
+
+
     <link rel="stylesheet" href="{{ asset('frontAssets/cdn.jsdelivr.net/gh/iconoir-icons/iconoir%40main/css/iconoir.css') }}">
 
     <link rel="stylesheet" href="{{ asset('frontAssets/css/bootstrap.min.css') }}">
