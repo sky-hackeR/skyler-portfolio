@@ -93,10 +93,10 @@ Route::group(['prefix' => 'admin'], function () {
   Route::post('/deleteCertificate', [App\Http\Controllers\Admin\AdminController::class, 'deleteCertificate'])->name('deleteCertificate')->middleware(['auth:admin']);
 
 
-  Route::get('/post', [App\Http\Controllers\Admin\AdminController::class, 'post'])->name('post')->middleware(['auth:admin']);
-  Route::get('/allPosts', [App\Http\Controllers\Admin\AdminController::class, 'allPosts'])->name('allPosts')->middleware(['auth:admin']);
-  Route::post('/addPost', [App\Http\Controllers\Admin\AdminController::class, 'addPost'])->name('addPost')->middleware(['auth:admin']);
-  Route::post('/editPost', [App\Http\Controllers\Admin\AdminController::class, 'editPost'])->name('editPost')->middleware(['auth:admin']);
-  Route::post('/deletePost', [App\Http\Controllers\Admin\AdminController::class, 'deletePost'])->name('deletePost')->middleware(['auth:admin']);
+  Route::get('/post', [App\Http\Controllers\Admin\BlogController::class, 'post'])->name('post')->middleware(['auth:admin']);
+  Route::get('/allPosts', [App\Http\Controllers\Admin\BlogController::class, 'allPosts'])->name('allPosts')->middleware(['auth:admin']);
+  Route::post('/addPost', [App\Http\Controllers\Admin\BlogController::class, 'addPost'])->name('addPost')->middleware(['auth:admin']);
+  Route::post('/editPost', [App\Http\Controllers\Admin\BlogController::class, 'editPost'])->name('editPost')->middleware(['auth:admin']);
+  Route::post('/deletePost', [App\Http\Controllers\Admin\BlogController::class, 'deletePost'])->name('deletePost')->middleware(['auth:admin']);
   
 });

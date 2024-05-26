@@ -190,7 +190,7 @@
                                     <span key="t-dashboards">Blog</span>
                                 </a>
                                 <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="{{ url('/admin/posts') }}" key="t-saas">Add New Post</a></li>
+                                    <li><a href="{{ url('/admin/post') }}" key="t-saas">Add New Post</a></li>
                                     <li><a href="{{ url('/admin/allPosts') }}" key="t-saas">All Posts</a></li>
                                 </ul>
                             </li>
@@ -230,7 +230,7 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-sm-6">
-                                <script>document.write(new Date().getFullYear())</script> © {{ !empty($pageGlobalData->setting) ? $pageGlobalData->setting->site_name : "Newspaper" }}
+                                <script>document.write(new Date().getFullYear())</script> © {{ !empty($pageGlobalData->setting) ? $pageGlobalData->setting->site_name : "Skyler" }}
                             </div>
                             <div class="col-sm-6">
                                 <div class="text-sm-end d-none d-sm-block">
