@@ -184,6 +184,17 @@
                                 </a>
                             </li>
 
+                            <li>
+                                <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                    <i class="bx bx-folder-open"></i>
+                                    <span key="t-dashboards">Blog</span>
+                                </a>
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="{{ url('/admin/posts') }}" key="t-saas">Add New Post</a></li>
+                                    <li><a href="{{ url('/admin/allPosts') }}" key="t-saas">All Posts</a></li>
+                                </ul>
+                            </li>
+
                             <li class="menu-title" key="t-auth"></li>
                             <li>
                                 <a href="{{ url('/admin/logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="waves-effect">
