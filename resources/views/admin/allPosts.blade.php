@@ -51,10 +51,9 @@
                     <thead>
                     <tr>
                         <th>#</th>
-                        <th>Title</th>
-                        <th>Slug</th>
-                        <th>Content</th>
                         <th>Image</th>
+                        <th>Title</th>
+                        <th>Content</th>
                         <th>Action</th>
                     </tr>
                     </thead>
@@ -62,12 +61,16 @@
                     @foreach($posts as $post)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
+                        <td><img src="{{ $post->image }}" alt="{{ $post->title }}" width="50"></td>
                         <td>{{ $post->title }}</td>
-                        <td>{{ $post->slug }}</td>
                         <td>{{ Illuminate\Support\Str::limit(strip_tags($post->content), 30) }}</td>
-                        <td><img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}" width="50"></td>
                         <td>
                             <div class="text-end">
+                                <!-- View Button -->
+                                <a class="btn btn-outline-primary btn-sm" title="View" href="">
+                                    <i class="fas fa-eye"></i>
+                                </a>
+
                                 <!-- Edit Button -->
                                 <a class="btn btn-outline-primary btn-sm" title="Edit" data-bs-toggle="modal" data-bs-target="#editBlogPost{{ $post->id }}">
                                     <i class="fas fa-pencil-alt"></i>
@@ -81,7 +84,7 @@
 
                             <!-- Delete Blog Post Modal -->
                             <div class="modal fade" id="deleteBlogPost{{ $post->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="deleteBlogPostLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-md modal-dialog-centered" role="document">
+                                <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                         <form action="{{ url('/admin/deletePost') }}" method="POST">
                                             @csrf
@@ -111,16 +114,10 @@
                                                 @csrf
                                                 <input type="hidden" name="post_id" value="{{ $post->id }}">
                                                 <div class="row">
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-12">
                                                         <div class="form-floating mb-3">
                                                             <input type="text" class="form-control" id="floatingTitleInput" name="title" placeholder="Enter Title" value="{{ $post->title }}">
                                                             <label for="floatingTitleInput">Title</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-floating mb-3">
-                                                            <input type="text" class="form-control" id="floatingSlugInput" name="slug" placeholder="Enter Slug" value="{{ $post->slug }}">
-                                                            <label for="floatingSlugInput">Slug</label>
                                                         </div>
                                                     </div>
                                                 </div>

@@ -68,10 +68,7 @@ class AdminController extends Controller
     }
 
     public function projects(){
-        $projects = Project::get();
-        return view('admin.projects', [
-            'projects' => $projects
-        ]);
+        return view('admin.projects');
     }
 
     public function allProjects(){

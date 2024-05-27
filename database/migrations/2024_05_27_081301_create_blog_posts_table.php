@@ -18,6 +18,7 @@ class CreateBlogPostsTable extends Migration
             $table->string('title')->nullable();
             $table->text('content')->nullable();
             $table->string('image')->nullable();
+            $table->string('slug')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

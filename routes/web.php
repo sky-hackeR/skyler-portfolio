@@ -98,5 +98,7 @@ Route::group(['prefix' => 'admin'], function () {
   Route::post('/addPost', [App\Http\Controllers\Admin\BlogController::class, 'addPost'])->name('addPost')->middleware(['auth:admin']);
   Route::post('/editPost', [App\Http\Controllers\Admin\BlogController::class, 'editPost'])->name('editPost')->middleware(['auth:admin']);
   Route::post('/deletePost', [App\Http\Controllers\Admin\BlogController::class, 'deletePost'])->name('deletePost')->middleware(['auth:admin']);
+
+  Route::get('/viewPost/{slug}', [App\Http\Controllers\Admin\BlogController::class, 'viewPost'])->name('viewPost')->middleware(['auth:admin']);
   
 });
