@@ -5,24 +5,31 @@
 <section class="breadcrumb-area">
     <div class="container">
         <div class="breadcrumb-content" data-aos="fade-up">
-            <p>HOME - BLOG DETAILS</p>
-            <h1 class="section-heading"><img src="{{ asset('frontAssets/images/star-2.png') }}" alt="Star"> Blog Details <img src="{{ asset('frontAssets/images/star-2.png') }}" alt="Star"></h1>
+            <p>HOME - BLOG</p>
+            <h1 class="section-heading"><img src="{{ asset('frontAssets/images/star-2.png') }}" alt="Star"> Blog <img src="{{ asset('frontAssets/images/star-2.png') }}" alt="Star"></h1>
         </div>
     </div>
 </section>
 
-<!-- Blog Details -->
-<section class="blog-details-area">
+<!-- Blog Items -->
+<section class="blog-area">
     <div class="container">
         <div class="row">
             <div class="col-md-8">
-                <div class="blog-details-content">
-                    <div class="img-box">
-                        <img src="{{ asset( $post->image) }}" alt="Blog">
-                    </div>
-                    <span class="meta">{{ $post->created_at->format('d M Y') }}</span>
-                    <h1>{{ $post->title }}</h1>
-                    <p>{!! nl2br(e($post->content)) !!}</p>
+                <div class="blog-items">
+                    @foreach($posts as $post)
+                        <div class="blog-item" data-aos="zoom-in">
+                            <div class="img-box">
+                                <img src="{{ asset($post->image) }}" alt="Blog">
+                            </div>
+                            <div class="content">
+                                <span class="meta">{{ $post->created_at->format('d M Y') }}</span>
+                                <h1><a href="{{ route('viewPost', ['slug' => $post->slug]) }}">{{ $post->title }}</a></h1>
+                                <p>{!! Str::limit($post->content, 150, '...') !!}</p>
+                                <a href="{{ url('viewPost', $post->slug) }}" class="theme-btn">Read More</a>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
             </div>
             <div class="col-md-4">
@@ -41,18 +48,13 @@
                         <div class="blog-sidebar-widget recent-post-widget" data-aos="zoom-in">
                             <div class="blog-sidebar-widget-inner shadow-box">
                                 <h3>Recent Posts</h3>
-
                                 <ul>
                                     @foreach($recentPosts as $recentPost)
                                         <li><a href="{{ route('viewPost', $recentPost->slug) }}">{{ $recentPost->title }}</a></li>
                                     @endforeach
                                 </ul>
-
                             </div>
                         </div>
-
-                        
-
 
                     </div>
                 </div>

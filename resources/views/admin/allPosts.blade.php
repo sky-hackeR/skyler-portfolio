@@ -67,7 +67,7 @@
                         <td>
                             <div class="text-end">
                                 <!-- View Button -->
-                                <a class="btn btn-outline-primary btn-sm" title="View" href="">
+                                <a class="btn btn-outline-primary btn-sm" title="View" data-bs-toggle="modal" data-bs-target="#viewBlogPost{{ $post->id }}">
                                     <i class="fas fa-eye"></i>
                                 </a>
 
@@ -81,6 +81,29 @@
                                     <i class="fas fa-trash"></i>
                                 </a>
                             </div>
+
+                            <!-- View Blog Post Modal -->
+                            <div class="modal fade" id="viewBlogPost{{ $post->id }}" tabindex="-1" aria-labelledby="viewBlogPostLabel{{ $post->id }}" aria-hidden="true">
+                                <div class="modal-dialog modal-xl">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="viewBlogPostLabel{{ $post->id }}">View Blog Post</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="card">
+                                                <img src="{{ $post->image }}" class="card-img-top" alt="{{ $post->title }}" style="max-height: 400px; width: auto; height: auto;">
+                                                <div class="card-body">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">{{ $post->title }}</h5>
+                                                    <p class="card-text" style="white-space: pre-wrap;">{{ strip_tags($post->content) }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
 
                             <!-- Delete Blog Post Modal -->
                             <div class="modal fade" id="deleteBlogPost{{ $post->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="deleteBlogPostLabel" aria-hidden="true">

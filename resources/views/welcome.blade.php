@@ -103,7 +103,7 @@
                 <div class="blog-service-profile-wrap d-flex gap-24">
                     <div data-aos="zoom-in">
                         <div class="about-blog-box info-box shadow-box h-full">
-                            <a href="{{ url('/coming') }}" class="overlay-link"></a>
+                            <a href="{{ url('/post') }}" class="overlay-link"></a>
                             <img src="{{ asset('frontAssets/images/bg1.png') }}" alt="BG" class="bg-img">
                             <img src="{{ asset('frontAssets/images/gfonts.png') }}" alt="GFonts">
                             <div class="d-flex align-items-center justify-content-between">
@@ -112,7 +112,7 @@
                                     <h1>GFonts</h1>
                                 </div>
 
-                                <a href="{{ url('/coming') }}" class="about-btn">
+                                <a href="{{ url('/post') }}" class="about-btn">
                                     <img src="{{ asset('frontAssets/images/icon.svg') }}" alt="Button">
                                 </a>
 

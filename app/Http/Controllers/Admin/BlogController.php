@@ -50,12 +50,6 @@ class BlogController extends Controller
         ]);
     }
 
-    public function viewPost($slug) {
-        $post = BlogPost::where('slug', $slug)->firstOrFail();
-        return view('viewPost', [
-            'post' => $post,
-        ]);
-    }
 
     public function addPost(Request $request) {
         $validator = Validator::make($request->all(), [

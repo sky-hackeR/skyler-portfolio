@@ -24,6 +24,7 @@ use App\Models\Skill;
 use App\Models\Counter;
 use App\Models\Certificate;
 use App\Models\Service;
+use App\Models\BlogPost;
 
 
 use SweetAlert;
@@ -114,4 +115,23 @@ class PageController extends Controller
             'project' => $project,
         ]);
     }
+
+    public function post() {
+        $posts = BlogPost::all();
+        $recentPosts = BlogPost::orderBy('created_at', 'desc')->limit(5)->get();
+        return view('post',[
+            'posts' => $posts,
+            'recentPosts' => $recentPosts
+        ]);
+    }
+
+    public function viewPost($slug) {
+        $post = BlogPost::where('slug', $slug);
+        $recentPosts = BlogPost::orderBy('created_at', 'desc')->take(5)->get();
+        return view('viewPost',[
+            'post' => $post,
+            'recentPosts' => $recentPosts
+        ]);
+    }
+
 }

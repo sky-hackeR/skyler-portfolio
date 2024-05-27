@@ -20,6 +20,11 @@ Route::get('/project', [App\Http\Controllers\PageController::class, 'project'])-
 Route::get('/services', [App\Http\Controllers\PageController::class, 'services'])->name('services');
 Route::get('/coming', [App\Http\Controllers\PageController::class, 'coming'])->name('coming');
 Route::get('/viewProject/{slug}', [App\Http\Controllers\PageController::class, 'viewProject'])->name('viewProject');
+Route::get('/post', [App\Http\Controllers\PageController::class, 'post'])->name('post');
+Route::get('/search', [App\Http\Controllers\PageController::class, 'search'])->name('post');
+Route::get('/viewPost/{slug}', [App\Http\Controllers\PageController::class, 'viewPost'])->name('viewPost');
+
+
 
 Route::group(['prefix' => 'admin'], function () {
   Route::get('/', [App\Http\Controllers\Admin\Auth\LoginController::class, 'showLoginForm'])->name('admin.login');
@@ -98,7 +103,5 @@ Route::group(['prefix' => 'admin'], function () {
   Route::post('/addPost', [App\Http\Controllers\Admin\BlogController::class, 'addPost'])->name('addPost')->middleware(['auth:admin']);
   Route::post('/editPost', [App\Http\Controllers\Admin\BlogController::class, 'editPost'])->name('editPost')->middleware(['auth:admin']);
   Route::post('/deletePost', [App\Http\Controllers\Admin\BlogController::class, 'deletePost'])->name('deletePost')->middleware(['auth:admin']);
-
-  Route::get('/viewPost/{slug}', [App\Http\Controllers\Admin\BlogController::class, 'viewPost'])->name('viewPost')->middleware(['auth:admin']);
   
 });
