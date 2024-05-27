@@ -11,6 +11,9 @@ class BlogPost extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        
+        'title',
+        'content',
+        'image',
+        'slug',
     ];
 }
