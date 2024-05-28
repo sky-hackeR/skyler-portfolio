@@ -104,10 +104,10 @@ class PageController extends Controller
         ]);
     }
 
-    public function coming() {
+    // public function coming() {
         
-        return view('coming');
-    }
+    //     return view('coming');
+    // }
 
     public function viewProject($slug){
         $project = Project::with('images')->where('slug', $slug)->firstOrFail();

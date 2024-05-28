@@ -18,7 +18,7 @@ Route::get('/contact', [App\Http\Controllers\PageController::class, 'contact'])-
 Route::get('/credentials', [App\Http\Controllers\PageController::class, 'credentials'])->name('credentials');
 Route::get('/project', [App\Http\Controllers\PageController::class, 'project'])->name('project');
 Route::get('/services', [App\Http\Controllers\PageController::class, 'services'])->name('services');
-Route::get('/coming', [App\Http\Controllers\PageController::class, 'coming'])->name('coming');
+// Route::get('/coming', [App\Http\Controllers\PageController::class, 'coming'])->name('coming');
 Route::get('/viewProject/{slug}', [App\Http\Controllers\PageController::class, 'viewProject'])->name('viewProject');
 Route::get('/post', [App\Http\Controllers\PageController::class, 'post'])->name('post');
 Route::get('/search', [App\Http\Controllers\PageController::class, 'search'])->name('post');
