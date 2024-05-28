@@ -31,8 +31,7 @@
 <div class="row mb-4">
     <div class="col-lg-12">
         <div class="d-flex align-items-center">
-            <div class="ms-3 flex-grow-1">
-            </div>
+            <div class="ms-3 flex-grow-1"></div>
             <div>
                 <a href="{{ url('/admin/post') }}" class="btn btn-primary"><i class="bx bx-plus align-middle"></i> Add New Blog Post</a>
             </div>
@@ -94,7 +93,6 @@
                                             <div class="card">
                                                 <img src="{{ $post->image }}" class="card-img-top" alt="{{ $post->title }}" style="max-height: 400px; width: auto; height: auto;">
                                                 <div class="card-body">
-                                                <div class="card-body">
                                                     <h5 class="card-title">{{ $post->title }}</h5>
                                                     <p class="card-text" style="white-space: pre-wrap;">{{ strip_tags($post->content) }}</p>
                                                 </div>
@@ -103,7 +101,6 @@
                                     </div>
                                 </div>
                             </div>
-
 
                             <!-- Delete Blog Post Modal -->
                             <div class="modal fade" id="deleteBlogPost{{ $post->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="deleteBlogPostLabel" aria-hidden="true">

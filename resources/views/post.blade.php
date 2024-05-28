@@ -6,7 +6,7 @@
     <div class="container">
         <div class="breadcrumb-content" data-aos="fade-up">
             <p>HOME - BLOG</p>
-            <h1 class="section-heading"><img src="{{ asset('frontAssets/images/star-2.png') }}" alt="Star"> Blog <img src="{{ asset('frontAssets/images/star-2.png') }}" alt="Star"></h1>
+            <h1 class="section-heading"><img src="{{ asset('frontAssets/images/star-2.png') }}" alt="Star"> Blog Posts<img src="{{ asset('frontAssets/images/star-2.png') }}" alt="Star"></h1>
         </div>
     </div>
 </section>

@@ -5,8 +5,8 @@
 <section class="breadcrumb-area">
     <div class="container">
         <div class="breadcrumb-content" data-aos="fade-up">
-            <p>HOME - BLOG DETAILS</p>
-            <h1 class="section-heading"><img src="{{ asset('frontAssets/images/star-2.png') }}" alt="Star"> Blog Details <img src="{{ asset('frontAssets/images/star-2.png') }}" alt="Star"></h1>
+            <p>HOME - {{ $post->title }}</p>
+            <h1 class="section-heading"><img src="{{ asset('frontAssets/images/star-2.png') }}" alt="Star"> {{ $post->title }} <img src="{{ asset('frontAssets/images/star-2.png') }}" alt="Star"></h1>
         </div>
     </div>
 </section>
@@ -20,9 +20,9 @@
                     <div class="img-box">
                         <img src="{{ asset( $post->image) }}" alt="Blog">
                     </div>
-                    <span class="meta">{{ $post->created_at->format('d M Y') }}</span>
+                    <span class="meta">{{ $post->created_at->format('d M Y') }} - 5 Minutes Read</span>
                     <h1>{{ $post->title }}</h1>
-                    <p>{!! nl2br(e($post->content)) !!}</p>
+                    <p>{!! nl2br(e(strip_tags($post->content))) !!}</p>
                 </div>
             </div>
             <div class="col-md-4">
@@ -50,10 +50,6 @@
 
                             </div>
                         </div>
-
-                        
-
-
                     </div>
                 </div>
             </div>

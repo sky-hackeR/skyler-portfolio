@@ -126,7 +126,7 @@ class PageController extends Controller
     }
 
     public function viewPost($slug) {
-        $post = BlogPost::where('slug', $slug);
+        $post = BlogPost::where('slug', $slug)->firstOrFail();
         $recentPosts = BlogPost::orderBy('created_at', 'desc')->take(5)->get();
         return view('viewPost',[
             'post' => $post,
