@@ -62,7 +62,7 @@
                         <td>{{ $loop->iteration }}</td>
                         <td><img src="{{ $post->image }}" alt="{{ $post->title }}" width="50"></td>
                         <td>{{ $post->title }}</td>
-                        <td>{{ Illuminate\Support\Str::limit(strip_tags($post->content), 30) }}</td>
+                        <td>{{ Illuminate\Support\Str::limit(strip_tags($post->content), 50) }}</td>
                         <td>
                             <div class="text-end">
                                 <!-- View Button -->
