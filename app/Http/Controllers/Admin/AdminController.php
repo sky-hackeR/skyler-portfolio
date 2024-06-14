@@ -188,7 +188,7 @@ class AdminController extends Controller
             return redirect()->back();
         }
 
-        if(!empty($request->site_name)){
+        if(!empty($request->username)){
             $username = $request->username;
             $siteInfo->username = $username;
         }
