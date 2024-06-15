@@ -88,7 +88,7 @@
         <footer class="footer-area">
             <div class="container">
                 <div class="footer-content text-center">
-                    <a href="index.html" class="logo">
+                    <a href="{{ url('/') }}" class="logo">
                         <img src="{{ !empty($pageGlobalData->setting) ? $pageGlobalData->setting->logo_top : "" }}" alt="Logo" height="40">
                     </a>
                     <ul class="footer-menu">
