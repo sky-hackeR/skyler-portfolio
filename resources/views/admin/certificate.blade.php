@@ -85,7 +85,7 @@
                                 </td>
                                 <td>
                                     <div class="text-end">
-                                        <span class="font-size-11">{!! $certificate->description !!}</span>
+                                        <span class="font-size-11" {!! strlen($certificate->description) > 30 ? substr($certificate->description, 0, 30) . '...' : $certificate->description !!}</span>
                                     </div>
                                 </td>
                                 <td>
@@ -120,7 +120,7 @@
 
                                                             <div class="mb-3">
                                                                 <label for="description" class="form-label">Description</label>
-                                                                <textarea class="form-control" id="description" name="description" value="{{ $certificate->description }}"></textarea>
+                                                                <textarea class="form-control" id="description" name="description">{{ $certificate->description }}</textarea>
                                                             </div>
                                                         </div>
                                                         <div class="modal-footer">

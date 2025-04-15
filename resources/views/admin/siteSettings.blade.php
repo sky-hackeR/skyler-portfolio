@@ -84,6 +84,19 @@
                             <input type="file" class="form-control" id="floatingImageInput" name="image">
                         </div>
                     </fieldset>
+
+
+                    <hr>
+                    <h5 class="card-title">Upload CV</h5>
+                    <hr>
+                
+                    <fieldset class="mb-3">
+                        <p>CV (PDF Only)</p>
+                        <div class="form-floating mb-3">
+                            <input type="file" class="form-control" id="floatingCVInput" name="cv" accept=".pdf">
+                            <label for="floatingCVInput">Upload CV</label>
+                        </div>
+                    </fieldset>
                     
                    
                     <div>

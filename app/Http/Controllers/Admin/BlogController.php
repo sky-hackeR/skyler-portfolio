@@ -95,8 +95,8 @@ class BlogController extends Controller
             return redirect()->back();
         }
 
-        if (!$blogPost = Project::find($request->post_id)) {
-            alert()->error('Oops', 'Invalid Project')->persistent('Close');
+        if (!$blogPost = BlogPost::find($request->post_id)) {
+            alert()->error('Oops', 'Invalid Post Details')->persistent('Close');
             return redirect()->back();
         }
 

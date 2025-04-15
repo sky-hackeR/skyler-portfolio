@@ -16,5 +16,6 @@ class SiteInfo extends Model
         'logo_top',
         'description',
         'favicon',
+        'cv',
     ];
 }

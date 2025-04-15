@@ -75,7 +75,7 @@
                         <td>{{ $project->year }}</td>
                         <td>{{ $project->services }}</td>
                         <td>{{ $project->project_type }}</td>
-                        <td>{{ Illuminate\Support\Str::limit(strip_tags($project->description), 30) }}</td>
+                        <td>{!! strlen($project->description) > 70 ? substr($project->description, 0, 50) . '...' : $project->description !!}</td>
                         <td>
                             <div class="text-end">
 

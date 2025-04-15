@@ -25,7 +25,8 @@
                             <div class="content">
                                 <span class="meta">{{ $post->created_at->format('d M Y') }}</span>
                                 <h1><a href="{{ route('viewPost', ['slug' => $post->slug]) }}">{{ $post->title }}</a></h1>
-                                <p>{!! Str::limit($post->content, 150, '...') !!}</p>
+                                <p>{!! strlen($post->content) > 150 ? substr($post->content, 0, 150) . '...' : $post->content !!}</p>
+
                                 <a href="{{ url('viewPost', $post->slug) }}" class="theme-btn">Read More</a>
                             </div>
                         </div>

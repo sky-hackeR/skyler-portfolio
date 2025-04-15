@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
-use App\Models\Siteinfo as Setting;
+use App\Models\SiteInfo as Setting;
 use App\Models\Social;
 use App\Models\ContactInfo;
 
@@ -36,7 +36,7 @@ class MyAppServiceProvider extends ServiceProvider
 
     public function pageGlobalData(){
         $setting = Setting::first();
-        $socials = social::all();
+        $socials = Social::all();
         $address = ContactInfo::first();
             
 

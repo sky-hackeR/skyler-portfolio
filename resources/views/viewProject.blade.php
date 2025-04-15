@@ -6,6 +6,34 @@
     .breadcrumb-text {
         text-transform: uppercase;
     }
+    /* Additional styles for unique image display */
+    .project-details-img {
+        position: relative;
+        margin-bottom: 24px;
+        overflow: hidden; /* Ensures images stay within the container */
+        border-radius: 10px; /* Adds rounded corners */
+    }
+    .project-details-img img {
+        width: 100%;
+        height: auto;
+        transition: transform 0.5s ease; /* Animation effect */
+    }
+    .project-details-img:hover img {
+        transform: scale(1.05); /* Scale effect on hover */
+    }
+    .project-details-3-img {
+        position: relative;
+        overflow: hidden; /* Ensures images stay within the container */
+        border-radius: 10px; /* Adds rounded corners */
+    }
+    .project-details-3-img img {
+        width: 100%;
+        height: auto;
+        transition: transform 0.5s ease; /* Animation effect */
+    }
+    .project-details-3-img:hover img {
+        transform: scale(1.05); /* Scale effect on hover */
+    }
 </style>
 
 <!-- Breadcrumb -->
@@ -91,7 +119,7 @@
                             <h4>{{ $project->services }}</h4>
                         </li>
                         <li>
-                            <p>Project</p>
+                            <p>Project Type</p>
                             <h4>{{ $project->project_type }}</h4>
                         </li>
                     </ul>
@@ -104,20 +132,11 @@
         </div>
     </div>
 
-    <div class="project-details-img" data-aos="zoom-in">
-        @if ($project->images->isNotEmpty())
-            <img src="{{ asset($project->images->first()->image) }}" alt="{{ $project->title }}">
-        @else
-            <img src="{{ asset('frontAssets/images/default-image.jpg') }}" alt="Default Image">
-        @endif
-    </div>
-
     <div class="container d-flex align-items-center justify-content-center" data-aos="zoom-in">
         <a href="#" class="big-btn shadow-box">
             Next Project
         </a>
     </div>
-    
 </section>
 
 @endsection

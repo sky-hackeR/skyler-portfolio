@@ -62,7 +62,8 @@
                         <td>{{ $loop->iteration }}</td>
                         <td><img src="{{ $post->image }}" alt="{{ $post->title }}" width="50"></td>
                         <td>{{ $post->title }}</td>
-                        <td>{{ Illuminate\Support\Str::limit(strip_tags($post->content), 50) }}</td>
+                        <td>{!! strlen($post->content) > 150 ? substr($post->content, 0, 50) . '...' : $post->content !!}</td>
+                        
                         <td>
                             <div class="text-end">
                                 <!-- View Button -->

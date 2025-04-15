@@ -2,6 +2,40 @@
 
 @section('content')
 
+<style>
+
+#cv-link {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 10px;
+    margin-top: 1px;
+}
+
+#cv-link li a::after {
+    content: "Download CV";
+    position: absolute;
+    top: 50%;
+    left: 120%; 
+    transform: translateY(-50%); 
+    background-color: transparent;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 4px;
+    opacity: 0;
+    visibility: hidden;
+    font-size: 12px;
+    white-space: nowrap;
+    transition: opacity 0.3s, visibility 0.3s;
+    z-index: 1; 
+}
+
+#cv-link li a:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
+</style>
+
 <!-- Credentials -->
 <section class="credential-area">
     <div class="container">
@@ -20,6 +54,14 @@
                                 <li><a href="{{ $social->link }}"><i class="{{ $social->icon }}"></i></a></li>
                             @endforeach
                         </ul>
+
+                        <ul class="social-links d-flex justify-content-center" id="cv-link">
+                            <li>
+                                <a href="{{ !empty($pageGlobalData->setting) && !empty($pageGlobalData->setting->cv) ? $pageGlobalData->setting->cv : '#' }}" target="_blank">
+                                    <i class="iconoir-cloud-download"></i>
+                                </a>
+                            </li>
+                        </ul>                        
                         <a href="{{ url('/contact') }}" class="theme-btn">Contact Me</a>
                     </div>
                 </div>

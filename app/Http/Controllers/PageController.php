@@ -52,8 +52,8 @@ class PageController extends Controller
     public function about() {
         $about= About::get();
         $socials = Social::all();
-        $experience = Experience::all();
-        $education = Education::all();
+        $experience = Experience::orderBy('end_year', 'desc')->get();
+        $education = Education::orderBy('end_year', 'desc')->get();
         return view('about',[
             'about' => $about,
             'socials' => $socials,
@@ -75,9 +75,9 @@ class PageController extends Controller
         $socials = Social::all();
         $about = About::get();
         $skill = Skill::all();
-        $certificate = Certificate::all();
-        $experience = Experience::all();
-        $education = Education::all();
+        $certificate = Certificate::orderBy('date', 'desc')->get();
+        $experience = Experience::orderBy('end_year', 'desc')->get();
+        $education = Education::orderBy('end_year', 'desc')->get();
         return view('credentials',[
             'socials' => $socials,
             'about' => $about,

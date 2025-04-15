@@ -61,7 +61,12 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="floatingServicesInput" name="services" placeholder="Enter Services">
+                                <select class="form-select" id="floatingServicesInput" name="services" aria-label="Select Services">
+                                    <option selected disabled>Select a Service</option>
+                                    @foreach($services as $service)
+                                        <option value="{{ $service->title }}">{{ $service->title }}</option>
+                                    @endforeach
+                                </select>
                                 <label for="floatingServicesInput">Services</label>
                             </div>
                         </div>

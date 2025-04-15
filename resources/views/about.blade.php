@@ -41,7 +41,7 @@
                                 <p class="date">{{ $exp->start_year }} - {{ $exp->end_year }}</p>
                                 <h2>{{ $exp->position }}</h2>
                                 <p class="type">{{ $exp->company }}</p>
-                                <p>{{ $exp->description }}</p>
+                                <p>{{ strip_tags($exp->description) }}</p>
                             </li>
                         @endforeach
                     </ul>
@@ -56,9 +56,9 @@
                         @foreach($education as $edu)
                         <li>
                             <p class="date">{{ $edu->start_year }} - {{ $edu->end_year }}</p>
-                            <h2>{{ $edu->position }}</h2>
-                            <p class="type">{{ $edu->company }}</p>
-                            <p>{{ $edu->description }}</p>
+                            <h2>{{ $edu->degree }}</h2>
+                            <p class="type">{{ $edu->school }}</p>
+                            <p>{{ strip_tags($edu->description) }}</p>
                         </li>
                         @endforeach
                     </ul>

@@ -2,12 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Mirrored from wpriverthemes.com/landing/gridx-html/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 15 May 2024 15:13:47 GMT -->
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ !empty($pageGlobalData->setting) ? $pageGlobalData->setting->description : "Solution to All" }}</title>
+    <title>{{ !empty($pageGlobalData->setting) ? $pageGlobalData->setting->site_name : "sky" }}</title>
+
+    <meta content="{{ !empty($pageGlobalData->setting) ? $pageGlobalData->setting->description : "Solution to All" }}" name="description" />
     
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{ !empty($pageGlobalData->setting) ? $pageGlobalData->setting->favicon : null }}">
@@ -16,6 +17,20 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/66d9c3ceea492f34bc0e12b0/1i71a9oob';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+        })();
+    </script>
+    <!--End of Tawk.to Script-->
 
 
     <!-- Custom Scrollbar Styles -->
@@ -39,6 +54,11 @@
             background: #555; /* Dark grey when hovering */
         }
     </style>
+    
+    <!-- PWA  -->
+    <meta name="theme-color" content="#00000"/>
+    <link rel="apple-touch-icon" href="{{ asset('logo.png') }}">
+    <link rel="manifest" href="{{ asset('/manifest.json') }}">
     
 
 
@@ -106,7 +126,24 @@
 
     </main>
     
-
+    <script src="{{ asset('/sw.js') }}"></script>
+    <script>
+    if ("serviceWorker" in navigator) {
+        // Register a service worker hosted at the root of the
+        // site using the default scope.
+        navigator.serviceWorker.register("/sw.js").then(
+        (registration) => {
+            console.log("Service worker registration succeeded:", registration);
+        },
+        (error) => {
+            console.error(`Service worker registration failed: ${error}`);
+        },
+        );
+    } else {
+        console.error("Service workers are not supported.");
+    }
+    </script>
+    
     <script src="{{ asset('frontAssets/js/jquery-3.6.4.js') }}"></script>
     <script src="{{ asset('frontAssets/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('frontAssets/js/aos.js') }}"></script>

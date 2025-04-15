@@ -102,7 +102,7 @@
                             <td>{{ $edu->degree }}</td>
                             <td>{{ $edu->start_year }}</td>
                             <td>{{ $edu->end_year }}</td>
-                            <td>{{ $edu->description }}</td>
+                            <td>{!! strlen($edu->description) > 50 ? substr($edu->description, 0, 50) . '...' : $edu->description !!}</td>
                             <td>
                                 <div class="text-end">
                                     <a class="btn btn-outline-secondary btn-sm edit" title="Edit" data-bs-toggle="modal" data-bs-target="#editEducation{{ $edu->id }}">

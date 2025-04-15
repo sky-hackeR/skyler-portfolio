@@ -102,7 +102,7 @@
                             <td>{{ $exp->position }}</td>
                             <td>{{ $exp->start_year }}</td>
                             <td>{{ $exp->end_year }}</td>
-                            <td>{{ $exp->description }}</td>
+                            <td>{!! strlen($exp->description) > 50 ? substr($exp->description, 0, 50) . '...' : $exp->description !!}</td>
                             <td>
                                 <div class="text-end">
                                     <a class="btn btn-outline-secondary btn-sm edit" title="Edit" data-bs-toggle="modal" data-bs-target="#editExperience{{ $exp->id }}">

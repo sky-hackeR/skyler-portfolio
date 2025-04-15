@@ -68,12 +68,17 @@ class AdminController extends Controller
     }
 
     public function projects(){
-        return view('admin.projects');
+        $services = Service::get();
+        return view('admin.projects',[
+            'services' => $services
+        ]);
     }
 
     public function allProjects(){
+        $services = Service::get();
         $projects = Project::all();
         return view('admin.allProjects', [
+            'services' => $services,
             'projects' => $projects
         ]);
     }
@@ -175,6 +180,7 @@ class AdminController extends Controller
             'logo_top' => 'nullable|image',
             'favicon' => 'nullable|image',
             'image' => 'nullable|image',
+            'cv'=> 'nullable|mimes:pdf|max:2048',
         ]);
 
         if($validator->fails()) {
@@ -226,6 +232,12 @@ class AdminController extends Controller
 
             $siteInfo->image = $image;
         }
+
+        if(!empty($request->cv)){
+            $cv = cloudinary()->uploadFile($request->file('cv')->getRealPath(), ['resource_type' => 'raw'])->getSecurePath(); 
+            $siteInfo->cv = $cv;
+        }
+
 
         if($siteInfo->save()){
             alert()->success('Changes Saved', 'Site information changes saved successfully')->persistent('Close');
@@ -994,7 +1006,7 @@ class AdminController extends Controller
             return redirect()->back();
         }
 
-        if(!$service = Certificate::find($request->service_id)){
+        if(!$service = Service::find($request->service_id)){
             alert()->error('Oops', 'Invalid Service Information')->persistent('Close');
             return redirect()->back();
         }

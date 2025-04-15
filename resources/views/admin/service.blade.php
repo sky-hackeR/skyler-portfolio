@@ -86,7 +86,7 @@
                                         </td>
                                         <td>
                                             <div class="text-end">
-                                                <span class="font-size-11">{!! $service->description !!}</span>
+                                                <span class="font-size-11" {!! strlen($service->description) > 30 ? substr($service->description, 0, 30) . '...' : $service->description !!}</span>
                                             </div>
                                         </td>
                                         <td>

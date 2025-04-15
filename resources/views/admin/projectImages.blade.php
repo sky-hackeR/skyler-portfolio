@@ -62,7 +62,11 @@
                             <h2 class="accordion-header">
                                 @foreach($projectImages->take(1) as $image)
                                     <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{$projectId}}" aria-expanded="true" aria-controls="collapse{{$projectId}}">
-                                        {{ $image->project->title }}
+                                        @if ($image->project)
+                                            {{ $image->project->title }}
+                                        @else
+                                            <p>No associated project found</p>
+                                        @endif
                                     </button>
                                 @endforeach
                             </h2>
@@ -75,7 +79,13 @@
                                                     <tr> 
                                                         <td>
                                                             <h5 class="text-truncate font-size-14 m-0">
-                                                                <a href="javascript: void(0);" class="text-dark">{{ $image->project->title }}</a>
+                                                                <a href="javascript: void(0);" class="text-dark">
+                                                                    @if ($image->project)
+                                                                        {{ $image->project->title }}
+                                                                    @else
+                                                                        <p>No associated project found</p>
+                                                                    @endif
+                                                                </a>
                                                             </h5>
                                                         </td>
                                                         <td>
