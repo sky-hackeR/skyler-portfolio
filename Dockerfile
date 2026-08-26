@@ -18,7 +18,7 @@ RUN a2enmod rewrite
 WORKDIR /var/www/html
 COPY . /var/www/html
 
-# Install package dependencies cleanly, bypassing restrictive environment requirements
+# Install package dependencies securely
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 RUN composer install --no-dev --optimize-autoloader --no-interaction --ignore-platform-reqs
 
@@ -27,23 +27,8 @@ ENV APACHE_DOCUMENT_ROOT /var/www/html/public
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf
 
-# Create a secure production .env file inside the container using the Render variables
-RUN echo "APP_NAME=\"sky-hackeR\"" > .env && \
-    echo "APP_ENV=production" >> .env && \
-    echo "APP_KEY=\${APP_KEY}" >> .env && \
-    echo "APP_DEBUG=false" >> .env && \
-    echo "LOG_CHANNEL=stderr" >> .env && \
-    echo "DB_CONNECTION=mysql" >> .env && \
-    echo "DB_HOST=\${DB_HOST}" >> .env && \
-    echo "DB_PORT=\${DB_PORT}" >> .env && \
-    echo "DB_DATABASE=\${DB_DATABASE}" >> .env && \
-    echo "DB_USERNAME=\${DB_USERNAME}" >> .env && \
-    echo "DB_PASSWORD=\${DB_PASSWORD}" >> .env
-
-# Clear out and cleanly cache framework profiles using the freshly built internal .env
-RUN php artisan config:clear && \
-    php artisan cache:clear && \
-    php artisan config:cache
+# Map your system configuration strings safely to the application logic
+RUN echo "PassEnv APP_KEY APP_ENV APP_DEBUG DB_CONNECTION DB_HOST DB_PORT DB_DATABASE DB_USERNAME DB_PASSWORD LOG_CHANNEL" >> /etc/apache2/apache2.conf
 
 # Fix folder write restrictions permanently
 RUN chmod -R 777 storage bootstrap/cache
