@@ -33,4 +33,8 @@ RUN echo "PassEnv APP_KEY APP_ENV APP_DEBUG DB_CONNECTION DB_HOST DB_PORT DB_DAT
 # Fix folder write restrictions permanently
 RUN chmod -R 777 storage bootstrap/cache
 
+# Force-clear any compiled configuration arrays before boot
+RUN php artisan config:clear
+RUN php artisan cache:clear
+
 EXPOSE 80
