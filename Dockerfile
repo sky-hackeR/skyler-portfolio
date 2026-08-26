@@ -22,16 +22,18 @@ COPY . /var/www/html
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 RUN composer install --no-dev --optimize-autoloader --no-interaction
 
-# Safe production compilation directives
-RUN php artisan config:clear
-RUN php artisan cache:clear
-RUN php artisan config:cache
-
-
 # Force Apache root path directly down into Laravel's public directory
 ENV APACHE_DOCUMENT_ROOT /var/www/html/public
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf
+
+# Clean up framework optimizations
+RUN php artisan config:clear
+RUN php artisan cache:clear
+RUN php artisan config:cache
+
+# Fix folder write restrictions permanently
+RUN chmod -R 777 storage bootstrap/cache
 
 # Map your system configuration strings safely to the application logic
 RUN echo "PassEnv APP_KEY APP_ENV APP_DEBUG DB_CONNECTION DB_HOST DB_PORT DB_DATABASE DB_USERNAME DB_PASSWORD" >> /etc/apache2/apache2.conf
