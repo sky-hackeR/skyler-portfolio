@@ -22,6 +22,13 @@ COPY . /var/www/html
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 RUN composer install --no-dev --optimize-autoloader --no-interaction
 
+# ADD THESE LINES RIGHT HERE TO FIX THE CACHE AND LOGS:
+RUN php artisan config:clear
+RUN php artisan cache:clear
+RUN php artisan config:cache
+RUN php artisan route:cache
+
+
 # Force Apache root path directly down into Laravel's public directory
 ENV APACHE_DOCUMENT_ROOT /var/www/html/public
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf

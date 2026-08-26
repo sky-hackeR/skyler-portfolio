@@ -3,3 +3,10 @@ services:
     name: skyler-portfolio
     env: docker
     plan: free
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: "false" # Change to "true" if you still need to debug visual errors
+      - key: LOG_CHANNEL
+        value: stderr
