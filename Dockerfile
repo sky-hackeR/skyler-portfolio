@@ -1,6 +1,6 @@
 FROM php:8.2-apache
 
-# Install system dependencies & PHP extensions
+# Install basic system files & required PHP components
 RUN apt-get update && apt-get install -y \
     libpng-dev \
     libonig-dev \
@@ -11,25 +11,23 @@ RUN apt-get update && apt-get install -y \
     curl \
     && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
 
-# Enable Apache ModRewrite for Laravel Routing
+# Enable Apache ModRewrite for Laravel Routing structure
 RUN a2enmod rewrite
 
-# Set working directory
+# Setup working directory layout
 WORKDIR /var/www/html
-
-# Copy project files
 COPY . /var/www/html
 
-# Install Composer securely
+# Install package dependencies securely
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 RUN composer install --no-dev --optimize-autoloader --no-interaction
 
-# Set permissions for Laravel
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
-
-# Point Apache root directory to Laravel's public folder
+# Force Apache root path directly down into Laravel's public directory
 ENV APACHE_DOCUMENT_ROOT /var/www/html/public
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf
+
+# Map your system configuration strings safely to the application logic
+RUN echo "PassEnv APP_KEY APP_ENV APP_DEBUG DB_CONNECTION DB_HOST DB_PORT DB_DATABASE DB_USERNAME DB_PASSWORD" >> /etc/apache2/apache2.conf
 
 EXPOSE 80
